@@ -38,19 +38,23 @@ def update_profit_and_loss():
 
 def update_balance_sheet():
     """Update the Balance Sheet numbers for particular lines in Google sheets balance_sheet tab"""  
-    print("The following should be updated in BS:\n\tCash and Cash Equivalents\n\tShort-Term Loans")
-
-    cash_and_equivalents = int(input("Please enter the number for cash. The number should be between 5,000 and 100,000. "))
-    balance_sheet.update_acell('B8',cash_and_equivalents)
-
-    short_term_loans = int(input("Please enter the number for short-term loans. The number should be between 1,000 and 50,000. "))
-    balance_sheet.update_acell('B20',short_term_loans)    
+    accounts_to_update = {
+        'Cash and Cash Equivalents': ('B8', 5_000, 100_000),
+        'Short-Term Loans': ('B20', 1_000, 50_000)
+    }
+    
+    print("\nStep 2. Update the Balance Sheet numbers:")
+    for account_name, (cell, min_value, max_value) in accounts_to_update.items():
+        message = f"\nPlease enter the number for {account_name}. The number should be between {min_value} and {max_value}: "
+        value = input(message)
+        balance_sheet.update_acell(cell, value)
+        print(f"\n\t{account_name} updated successfully") 
 
 def main():
     update_profit_and_loss()
-    print("The Profit and loss account has been updated")
+    print("\nThe Profit and loss account has been updated")
     update_balance_sheet()
-    print("The Balance sheet has been updated")
+    print("\nThe Balance sheet has been updated")
 
 if __name__ == "__main__":
     main()
