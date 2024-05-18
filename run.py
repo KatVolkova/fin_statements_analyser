@@ -33,8 +33,8 @@ def validate_input(message, min_value, max_value, account_name):
             if min_value <= value <= max_value:
                 return value
             else:
-                message = f"Please enter the number for {account_name}. The number should not contain any decimal places. The number should be between {min_value} and {max_value}:"
-                print(f"The number should be between {min_value} and {max_value}. The number should not contain any decimal places. Please try again.")
+                message = f"Please enter the number for {account_name}. The number should not contain any decimal places. The number should be between {min_value:,.0f} and {max_value:,.0f}:"
+                print(f"The number should be between {min_value:,.0f} and {max_value:,.0f}. The number should not contain any decimal places. Please try again.")
         except ValueError as e:
             print(f"Invalid input: {e}")
 
@@ -52,7 +52,7 @@ def update_profit_and_loss():
     
     print("\nStep 1. Update Profit and Loss account numbers:")
     for account_name, (cell, min_value, max_value) in accounts_to_update.items():
-        message = f"\nPlease enter the number for {account_name}. The number should not contain any decimal places. The number should be between {min_value} and {max_value}: "
+        message = f"\nPlease enter the number for {account_name}. The number should not contain any decimal places. The number should be between {min_value:,.0f} and {max_value:,.0f}: "
         value = validate_input(message, min_value, max_value, account_name)
         profit_and_loss_sheet.update_acell(cell,value)
         print(f"\n\t{account_name} updated successfully")
@@ -68,7 +68,7 @@ def update_balance_sheet():
     
     print("\nStep 2. Update the Balance Sheet numbers:")
     for account_name, (cell, min_value, max_value) in accounts_to_update.items():
-        message = f"\nPlease enter the number for {account_name}. The number should not contain any decimal places. The number should be between {min_value} and {max_value}: "
+        message = f"\nPlease enter the number for {account_name}. The number should not contain any decimal places. The number should be between {min_value:,.0f} and {max_value:,.0f}: "
         value = validate_input(message, min_value, max_value, account_name)
         balance_sheet.update_acell(cell, value)
         print(f"\n\t{account_name} updated successfully") 
