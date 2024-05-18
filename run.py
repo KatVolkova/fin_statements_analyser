@@ -16,6 +16,29 @@ profit_and_loss_sheet = SHEET.worksheet('profit_and_loss')
 balance_sheet = SHEET.worksheet('balance_sheet')
 
 
+
+def validate_input(message, min_value, max_value, account_name):
+    """Validate the user's input to ensure that only a number within defined range is entered"""
+    while True:
+        try:
+            value = input(message).replace(',', '')
+            if value.lower() == 'exit':
+                print("Exiting the program.")
+                exit()
+            if not value.isdigit():
+                raise ValueError("Input must contain only digits.")
+            if value.startswith('0') and value != '0':
+                raise ValueError("Leading zeros are not allowed.")
+            value = float(value)
+            if min_value <= value <= max_value:
+                return value
+            else:
+                message = f"Please enter the number for {account_name}. The number should not contain any decimal places. The number should be between {min_value} and {max_value}:"
+                print(f"The number should be between {min_value} and {max_value}. The number should not contain any decimal places. Please try again.")
+        except ValueError as e:
+            print(f"Invalid input: {e}")
+
+
 def update_profit_and_loss():
     """Update the profit and loss account numbers for particular lines in Google sheets profit_and_loss tab"""
     
@@ -29,8 +52,8 @@ def update_profit_and_loss():
     
     print("\nStep 1. Update Profit and Loss account numbers:")
     for account_name, (cell, min_value, max_value) in accounts_to_update.items():
-        message = f"\nPlease enter the number for {account_name}. The number should be between {min_value} and {max_value}: "
-        value = input(message)
+        message = f"\nPlease enter the number for {account_name}. The number should not contain any decimal places. The number should be between {min_value} and {max_value}: "
+        value = validate_input(message, min_value, max_value, account_name)
         profit_and_loss_sheet.update_acell(cell,value)
         print(f"\n\t{account_name} updated successfully")
 
@@ -45,8 +68,8 @@ def update_balance_sheet():
     
     print("\nStep 2. Update the Balance Sheet numbers:")
     for account_name, (cell, min_value, max_value) in accounts_to_update.items():
-        message = f"\nPlease enter the number for {account_name}. The number should be between {min_value} and {max_value}: "
-        value = input(message)
+        message = f"\nPlease enter the number for {account_name}. The number should not contain any decimal places. The number should be between {min_value} and {max_value}: "
+        value = validate_input(message, min_value, max_value, account_name)
         balance_sheet.update_acell(cell, value)
         print(f"\n\t{account_name} updated successfully") 
 
