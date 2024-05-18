@@ -18,19 +18,23 @@ balance_sheet = SHEET.worksheet('balance_sheet')
 
 def update_profit_and_loss():
     """Update the profit and loss account numbers for particular lines in Google sheets profit_and_loss tab"""
-    print("Step 1. Update Profit and Loss account numbers:")
+    
 
-    sales_revenue = int(input("Please enter the number for sales revenue. The number should be between 50,000 and 500,000. "))
-    profit_and_loss_sheet.update_acell('B5',sales_revenue)
+    accounts_to_update = {
+        'Sales Revenue': ('B5',50_000,500_000),
+        'Purchased Inventory': ('B9',10_000,200_000),
+        'Rent': ('B18',5_000,20_000),
+        'Interest Expense': ('B25',1_000,10_000)
+    }
+    
+    print("\nStep 1. Update Profit and Loss account numbers:")
+    for account_name, (cell, min_value, max_value) in accounts_to_update.items():
+        message = f"\nPlease enter the number for {account_name}. The number should be between {min_value} and {max_value}: "
+        value = input(message)
+        profit_and_loss_sheet.update_acell(cell,value)
+        print(f"\n\t{account_name} updated successfully")
 
-    purchased_inventory = int(input("Please enter the number for inventory. The number should be between 10,000 and 200,000. "))
-    profit_and_loss_sheet.update_acell('B9',purchased_inventory)
-
-    rent = int(input("Please enter the number for rent. The number should be between 5,000 and 20,000. "))
-    profit_and_loss_sheet.update_acell('B18',rent)
-
-    interest_expenses = int(input("Please enter the number for interest expenses.The number should be between 1,000 and 10,000. "))
-    profit_and_loss_sheet.update_acell('B25',interest_expenses)
+   
 
 def update_balance_sheet():
     """Update the Balance Sheet numbers for particular lines in Google sheets balance_sheet tab"""  
