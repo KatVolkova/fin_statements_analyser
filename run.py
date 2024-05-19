@@ -82,11 +82,76 @@ def update_balance_sheet():
         balance_sheet.update_acell(cell, value)
         print(f"\n\t{account_name} updated successfully") 
 
+
+# Generate Financial Statememts
+
+
+# Geneerate the Profit and Loss account
+
+def generate_profit_and_loss():
+    """Generate and display the Profit and Loss Account"""
+    # Extract data from Google Sheets
+    sales_revenue = float(profit_and_loss_sheet.acell('B5').value.replace(',', ''))
+    # Calculate cost of goods sold
+    beginning_inventory = float(profit_and_loss_sheet.acell('B8').value.replace(',', ''))
+    purchased_inventory = float(profit_and_loss_sheet.acell('B9').value.replace(',', ''))
+    ending_inventory = float(profit_and_loss_sheet.acell('B10').value.replace(',', ''))
+    cost_of_goods_sold = beginning_inventory + purchased_inventory - ending_inventory
+
+    # Calculate gross profit
+    gross_profit = sales_revenue - cost_of_goods_sold
+    # Extract Operating expenses from google sheets
+    payroll = float(profit_and_loss_sheet.acell('B16').value.replace(',', ''))
+    utilities = float(profit_and_loss_sheet.acell('B17').value.replace(',', ''))
+    rent_expense = float(profit_and_loss_sheet.acell('B18').value.replace(',', ''))
+    advertising_marketing_expenses = float(profit_and_loss_sheet.acell('B19').value.replace(',', ''))
+    depreciation_expense = float(profit_and_loss_sheet.acell('B20').value.replace(',', ''))
+    # Calculate  total operating expenses
+    total_operating_expenses = payroll + utilities + rent_expense + advertising_marketing_expenses + depreciation_expense
+    # Calculate operating income
+    operating_income = gross_profit - total_operating_expenses
+    # Extract additional data from google sheets
+    interest_expenses = float(profit_and_loss_sheet.acell('B25').value.replace(',', ''))
+    # Calculate net income
+    net_income = operating_income - interest_expenses
+
+    # Display profit and loss account
+    print("\nStep 3. Generate Financial Statements")
+    print("\nProfit and Loss Account:")
+    print("-------------------------------")
+    print(f"Sales Revenue: ${sales_revenue:,.2f}")
+    print(f"Cost of Goods Sold: ${cost_of_goods_sold:,.2f}")
+    print("-------------------------------")
+    print(f"Gross profit: ${gross_profit:,.2f}")
+    print("-------------------------------")
+    print(f"Operating Expenses:")
+    print(f"Payroll: ${payroll:,.2f}")
+    print(f"Utilities: ${utilities:,.2f}")
+    print(f"Rent Expense: ${rent_expense:,.2f}")
+    print(f"Advertising and Marketing Expenses: ${advertising_marketing_expenses:,.2f}")
+    print(f"Depreciation Expense: ${depreciation_expense:,.2f}")
+    print("-------------------------------")
+    print(f"Total Operating Expenses: ${total_operating_expenses:,.2f}")
+    print("-------------------------------")
+    print(f"Operating Income: ${operating_income:,.2f}")
+    print("-------------------------------")
+    print(f"Interest Expenses: ${interest_expenses:,.2f}")
+    print("-------------------------------")
+    print(f"Net Income: ${net_income:,.2f}")
+    print("-------------------------------")
+
+
+
+
+
+
+
 def main():
     update_profit_and_loss()
     print("\nThe Profit and loss account has been updated")
     update_balance_sheet()
     print("\nThe Balance sheet has been updated")
+    generate_profit_and_loss()
 
 if __name__ == "__main__":
     main()
