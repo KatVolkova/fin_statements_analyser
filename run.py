@@ -1,6 +1,8 @@
 import gspread
 from google.oauth2.service_account import Credentials
 
+# Authenticate and authorise the google sheets API
+
 SCOPE = [
     "https://www.googleapis.com/auth/spreadsheets",
     "https://www.googleapis.com/auth/drive.file",
@@ -12,10 +14,15 @@ SCOPED_CREDS = CREDS.with_scopes(SCOPE)
 GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open('financial_statements')
 
+
+# Get the worksheets objects
 profit_and_loss_sheet = SHEET.worksheet('profit_and_loss')
 balance_sheet = SHEET.worksheet('balance_sheet')
 
 
+# Financial statements update
+
+# Function to validate user's input
 
 def validate_input(message, min_value, max_value, account_name):
     """Validate the user's input to ensure that only a number within defined range is entered"""
@@ -38,6 +45,7 @@ def validate_input(message, min_value, max_value, account_name):
         except ValueError as e:
             print(f"Invalid input: {e}")
 
+# Function to update the profit and loss account
 
 def update_profit_and_loss():
     """Update the profit and loss account numbers for particular lines in Google sheets profit_and_loss tab"""
@@ -58,6 +66,7 @@ def update_profit_and_loss():
         print(f"\n\t{account_name} updated successfully")
 
    
+# Funciton to update the balance sheet 
 
 def update_balance_sheet():
     """Update the Balance Sheet numbers for particular lines in Google sheets balance_sheet tab"""  
