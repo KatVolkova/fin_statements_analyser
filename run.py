@@ -141,6 +141,57 @@ def generate_profit_and_loss():
     print("-------------------------------")
 
 
+def generate_balance_sheet():
+    """Generate and display the Balance Sheet"""
+    # Extract data from Google Sheets
+    property_plant_equipment = float(balance_sheet.acell('B5').value.replace(',', ''))
+    cash_and_equivalents = float(balance_sheet.acell('B8').value.replace(',', ''))
+    accounts_receivable = float(balance_sheet.acell('B9').value.replace(',', ''))
+    inventory = float(balance_sheet.acell('B10').value.replace(',', ''))
+    # Calculate total assets
+    total_assets = property_plant_equipment + cash_and_equivalents + accounts_receivable + inventory
+    
+    # Extract data from Google Sheets
+    long_term_debt = float(balance_sheet.acell('B16').value.replace(',', ''))
+    accounts_payable = float(balance_sheet.acell('B19').value.replace(',', ''))
+    short_term_loans = float(balance_sheet.acell('B20').value.replace(',', ''))
+
+    # Calculate total liabilities
+    total_liabilities = long_term_debt + accounts_payable + short_term_loans
+
+    # Extract data from Google Sheets
+    common_stock = float(balance_sheet.acell('B25').value.replace(',', ''))
+    retained_earnings = float(balance_sheet.acell('B26').value.replace(',', ''))
+    
+    # Calculate total liabilities and equity
+    total_liabilities_and_equity = total_liabilities + common_stock + retained_earnings
+
+    # Display the Balance Sheet
+    print("\nBalance Sheet:")
+    print("-------------------------------")
+    print(f"Non-Current Assets:")
+    print(f"Property, Plant and Equipment: ${property_plant_equipment:,.2f}")
+    print(f"Current Assets:")
+    print(f"Cash and Cash Equivalents: ${cash_and_equivalents:,.2f}")
+    print(f"Accounts Receivable: ${accounts_receivable:,.2f}")
+    print(f"Inventory: ${inventory:,.2f}")
+    print("-------------------------------")
+    print(f"Total Assets: ${total_assets:,.2f}")
+    print("-------------------------------")
+    print(f"Non-Current Liabilities:")
+    print(f"Long-term Debt: ${long_term_debt:,.2f}")
+    print(f"Current Liabilities:")
+    print(f"Accounts Payable: ${accounts_payable:,.2f}")
+    print(f"Short-Term Loans: ${short_term_loans:,.2f}")
+    print("-------------------------------")
+    print(f"Total Liabilities: ${total_liabilities:,.2f}")
+    print("-------------------------------")
+    print(f"Equity:")
+    print(f"Common Stock: ${common_stock:,.2f}")
+    print(f"Retained Earnings: ${retained_earnings:,.2f}")
+    print("-------------------------------")
+    print(f"Total Liabilities and Equity: ${total_liabilities_and_equity:,.2f}")
+    print("-------------------------------")
 
 
 
@@ -152,6 +203,7 @@ def main():
     update_balance_sheet()
     print("\nThe Balance sheet has been updated")
     generate_profit_and_loss()
+    generate_balance_sheet()
 
 if __name__ == "__main__":
     main()
