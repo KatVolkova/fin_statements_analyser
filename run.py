@@ -18,7 +18,7 @@ SHEET = GSPREAD_CLIENT.open('financial_statements')
 # Get the worksheets objects
 profit_and_loss_sheet = SHEET.worksheet('profit_and_loss')
 balance_sheet = SHEET.worksheet('balance_sheet')
-
+fin_ratios_sheet = SHEET.worksheet('ratios_historical_data')
 
 # Financial statements update
 
@@ -204,6 +204,7 @@ def calculate_liquidity_ratios():
     print("\nLiquidity ratios:")
     print(f"\n\tCurrent ratio: {current_ratio:.0f} times")
     print(f"\n\tQuick ratio: {quick_ratio:.0f} times")
+    return current_ratio, quick_ratio
 
 def calculate_profitability_ratios():
     """Calculate profitability ratios based on the updated financial statements: net profit margin and return on assets"""
@@ -224,6 +225,7 @@ def calculate_profitability_ratios():
     print("\nProfitability ratios:")
     print(f"\n\tNet Profit Margin: {net_profit_margin:.2f}%")
     print(f"\n\tReturn on Assets: {return_on_assets:.2f}%")
+    return net_profit_margin, return_on_assets
     
 def calculate_solvency_ratios():
     """Calculate solvency ratios based on the updated financial statements: debt-to-equity and interest cover ratios"""
@@ -244,7 +246,22 @@ def calculate_solvency_ratios():
     print("\nSolvency ratios:")
     print(f"\n\tDebt-to-Equity ratio: {debt_to_equity:.2f}%")
     print(f"\n\tInterest cover ratio: {interest_cover:.0f} times")
+    return debt_to_equity, interest_cover
    
+def update_ratios_googlews(current_ratio, quick_ratio, net_profit_margin, return_on_assets, debt_to_equity, interest_cover):
+    """Update the Google Sheet with the calculated financial ratios"""
+    ratios_to_update = {
+        'Current Ratio': ('E5', current_ratio),
+        'Quick Ratio': ('E6', quick_ratio),
+        'Net Profit Margin': ('E8', net_profit_margin),
+        'Return on Assets': ('E9', return_on_assets),
+        'Debt-to-Equity Ratio': ('E10', debt_to_equity),
+        'Interest Cover Ratio': ('E11', interest_cover)
+    }
+    
+    for ratio_name, (cell, value) in ratios_to_update.items():
+        fin_ratios_sheet.update_acell(cell, value)
+        print(f"\n\t{ratio_name} updated successfully")
 
 
 def main():
@@ -255,9 +272,11 @@ def main():
     generate_profit_and_loss()
     generate_balance_sheet()
     print("\nStep 4. Calculate Financial Ratios")
-    calculate_liquidity_ratios()
-    calculate_profitability_ratios()
-    calculate_solvency_ratios()
+    current_ratio, quick_ratio = calculate_liquidity_ratios()
+    net_profit_margin, return_on_assets = calculate_profitability_ratios()
+    debt_to_equity, interest_cover = calculate_solvency_ratios()
+    print("\nStep 5. Update Google sheets with calculated ratios numbers:")
+    update_ratios_googlews(current_ratio, quick_ratio, net_profit_margin, return_on_assets, debt_to_equity, interest_cover)
 
 if __name__ == "__main__":
     main()
