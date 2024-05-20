@@ -217,6 +217,21 @@ def calculate_profitability_ratios():
     print(f"\n\tNet Profit Margin: {net_profit_margin:.2f}%")
     print(f"\n\tReturn on Assets: {return_on_assets:.2f}%")
     
+def calculate_solvency_ratios():
+    # Extract values
+    total_liabilities = get_value(balance_sheet,'B21')
+    total_equity = get_value(balance_sheet,'B27')
+    interest_expenses = get_value(profit_and_loss_sheet,'B25')
+
+     # Calculations
+    debt_to_equity = (total_liabilities / total_equity) * 100
+    interest_cover = (get_value(profit_and_loss_sheet,'B23') / interest_expenses)
+
+    # Solvency ratios results:
+    print("\nSolvency ratios:")
+    print(f"\n\tDebt-to-Equity ratio: {debt_to_equity:.2f}%")
+    print(f"\n\tInterest cover ratio: {interest_cover:.0f} times")
+   
 
 
 def main():
@@ -229,6 +244,7 @@ def main():
     print("\nStep 4. Calculate Financial Ratios")
     calculate_liquidity_ratios()
     calculate_profitability_ratios()
+    calculate_solvency_ratios()
 
 if __name__ == "__main__":
     main()
