@@ -202,8 +202,8 @@ def calculate_liquidity_ratios():
 
     # Liquidity ratios results:
     print("\nLiquidity ratios:")
-    print(f"\n\tCurrent ratio: {current_ratio:.0f} times")
-    print(f"\n\tQuick ratio: {quick_ratio:.0f} times")
+    print(f"\n\tCurrent ratio: {current_ratio:.2f} times")
+    print(f"\n\tQuick ratio: {quick_ratio:.2f} times")
     return current_ratio, quick_ratio
 
 def calculate_profitability_ratios():
@@ -245,18 +245,18 @@ def calculate_solvency_ratios():
     # Solvency ratios results:
     print("\nSolvency ratios:")
     print(f"\n\tDebt-to-Equity ratio: {debt_to_equity:.2f}%")
-    print(f"\n\tInterest cover ratio: {interest_cover:.0f} times")
+    print(f"\n\tInterest cover ratio: {interest_cover:.2f} times")
     return debt_to_equity, interest_cover
    
 def update_ratios_googlews(current_ratio, quick_ratio, net_profit_margin, return_on_assets, debt_to_equity, interest_cover):
     """Update the Google Sheet with the calculated financial ratios"""
     ratios_to_update = {
-        'Current Ratio': ('E5', current_ratio),
-        'Quick Ratio': ('E6', quick_ratio),
-        'Net Profit Margin': ('E8', net_profit_margin),
-        'Return on Assets': ('E9', return_on_assets),
-        'Debt-to-Equity Ratio': ('E10', debt_to_equity),
-        'Interest Cover Ratio': ('E11', interest_cover)
+        'Current Ratio': ('E5', f"{current_ratio:.2f}"),
+        'Quick Ratio': ('E6', f"{quick_ratio:.2f}"),
+        'Net Profit Margin': ('E8', f"{net_profit_margin:.2f}%"),
+        'Return on Assets': ('E9', f"{return_on_assets:.2f}%"),
+        'Debt-to-Equity Ratio': ('E11', f"{debt_to_equity:.2f}%"),
+        'Interest Cover Ratio': ('E12', f"{interest_cover:.2f}")
     }
     
     for ratio_name, (cell, value) in ratios_to_update.items():
