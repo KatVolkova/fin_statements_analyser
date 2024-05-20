@@ -383,18 +383,33 @@ def calculate_trend_analysis(historical_data):
             previous_quarter = quarters[i - 1]
             current_value = data[current_quarter]
             previous_value = data[previous_quarter]
-            if previous_value != 0:  # Avoid division by zero
+            if previous_value != 0:  
                 change = ((current_value - previous_value) / previous_value) * 100
             else:
-                change = float('inf')  # Represent an infinite change
+                change = float('inf')  
             trend_analysis[ratio][f'{previous_quarter}-{current_quarter}'] = change
 
-    # Print the trend analysis results
+    # Print the trend analysis results with commentary
     print("\nTrend Analysis Results:")
     for ratio, changes in trend_analysis.items():
         print(f"\n{ratio}:")
         for period, change in changes.items():
-            print(f"\t{period}: {change:.2f}%")
+            comment = ""
+            if change == float('inf'):
+                comment = " (Significant increase due to previous value being zero)"
+            elif change > 0:
+                if change > 10:
+                    comment = " (Significant positive trend)"
+                else:
+                    comment = " (Positive trend)"
+            elif change < 0:
+                if change < -10:
+                    comment = " (Significant negative trend)"
+                else:
+                    comment = " (Negative trend)"
+            else:
+                comment = " (No change)"
+            print(f"\t{period}: {change:.2f}%{comment}")
 
     return trend_analysis
 
