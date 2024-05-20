@@ -187,6 +187,22 @@ def generate_balance_sheet():
     print("-------------------------------")
 
 
+# Calculate financial ratios
+
+def calculate_liquidity_ratios():
+    # Extract values
+    current_assets = get_value(balance_sheet, 'B11')
+    current_liabilities = get_value(balance_sheet, 'B21')
+    # Calculations
+    current_ratio = current_assets / current_liabilities
+    quick_ratio = (current_assets - get_value(balance_sheet, 'B10')) / current_liabilities
+
+    # Liquidity ratios results:
+    print("\nLiquidity ratios:")
+    print(f"\n\tCurrent ratio: {current_ratio:.0f} times")
+    print(f"\n\tQuick ratio: {quick_ratio:.0f} times")
+
+
 
 
 
@@ -197,6 +213,8 @@ def main():
     print("\nThe Balance sheet has been updated")
     generate_profit_and_loss()
     generate_balance_sheet()
+    print("\nStep 4. Calculate Financial Ratios")
+    calculate_liquidity_ratios()
 
 if __name__ == "__main__":
     main()
