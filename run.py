@@ -97,6 +97,7 @@ def generate_profit_and_loss():
     """Generate and display the Profit and Loss Account"""
     # Extract data from Google Sheets
     sales_revenue = get_value(profit_and_loss_sheet, 'B5')
+    beginning_inventory = get_value(profit_and_loss_sheet, 'B8')
     purchased_inventory = get_value(profit_and_loss_sheet, 'B9')
     ending_inventory = get_value(profit_and_loss_sheet, 'B10')
     payroll = get_value(profit_and_loss_sheet, 'B16')
