@@ -349,6 +349,25 @@ def compare_with_benchmarks(benchmarks, current_ratio, quick_ratio, net_profit_m
         else:
             print(f"\n\tThe {ratio} is equal to the industry benchmark, indicating average performance.")
 
+# Carry out the trend analysis based on historical data
+
+# Extract historical data
+
+def get_historical_data():
+    """Extract historical data for four quarters from Google Sheets."""
+    quarters = ['Q1', 'Q2', 'Q3', 'Q4']
+    columns = 'BCDE'
+
+    historical_data = {
+        'current_ratio': {quarter: get_value(fin_ratios_sheet, f'{column}5') for quarter, column in zip(quarters, columns)},
+        'quick_ratio': {quarter: get_value(fin_ratios_sheet, f'{column}6') for quarter, column in zip(quarters, columns)},
+        'net_profit_margin': {quarter: get_value(fin_ratios_sheet, f'{column}8') for quarter, column in zip(quarters, columns)},
+        'return_on_assets': {quarter: get_value(fin_ratios_sheet, f'{column}9') for quarter, column in zip(quarters, columns)},
+        'debt_to_equity': {quarter: get_value(fin_ratios_sheet, f'{column}11') for quarter, column in zip(quarters, columns)},
+        'interest_cover': {quarter: get_value(fin_ratios_sheet, f'{column}12') for quarter, column in zip(quarters, columns)}
+    }
+
+    return historical_data
 
 
 def main():
