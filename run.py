@@ -19,6 +19,7 @@ SHEET = GSPREAD_CLIENT.open('financial_statements')
 profit_and_loss_sheet = SHEET.worksheet('profit_and_loss')
 balance_sheet = SHEET.worksheet('balance_sheet')
 fin_ratios_sheet = SHEET.worksheet('ratios_historical_data')
+benchmarks_sheet = SHEET.worksheet('industry_benchmarks')
 
 # Financial statements update
 
@@ -307,6 +308,46 @@ def analyse_ratios(current_ratio, quick_ratio, net_profit_margin, return_on_asse
     else:
         print("\n\tInterest cover ratio suggests potential challenges in covering interest expenses.")
 
+# Actual vs Benchmark ratios comparison
+
+# Extract Benchmark Values
+
+def get_benchmarks():
+    """Extract benchmark values from Google sheets"""
+    return {
+        'current_ratio': get_value(benchmarks_sheet,'B4'),
+        'quick_ratio': get_value(benchmarks_sheet,'B5'),
+        'net_profit_margin': get_value(benchmarks_sheet,'B6'),
+        'return_on_assets': get_value(benchmarks_sheet,'B7'),
+        'debt_to_equity': get_value(benchmarks_sheet,'B8'),
+        'interest_cover': get_value(benchmarks_sheet,'B9')
+    }
+
+# Compare Actual results to Benchmark
+
+def compare_with_benchmarks(benchmarks, current_ratio, quick_ratio, net_profit_margin, return_on_assets,
+                            debt_to_equity, interest_cover):
+    """Compare actual results with benchmark values"""
+    ratios = {
+        'Current Ratio': current_ratio,
+        'Quick Ratio': quick_ratio,
+        'Net Profit Margin': net_profit_margin,
+        'Return on Assets': return_on_assets,
+        'Debt to Equity': debt_to_equity,
+        'Interest Cover': interest_cover
+    }
+
+    print("\nBenchmark Comparison Analysis:")
+    for ratio, value in ratios.items():
+        benchmark_value = benchmarks[ratio.lower().replace(' ', '_')]
+        unit = 'times' if ratio in ['Current Ratio', 'Quick Ratio', 'Interest Cover'] else '%'
+        print(f"\n\t{ratio}: {value:.2f} {unit} (Benchmark: {benchmark_value:.2f} {unit})")
+        if value > benchmark_value:
+            print(f"\n\tThe {ratio} is above the industry benchmark, indicating better performance.")
+        elif value < benchmark_value:
+            print(f"\n\tThe {ratio} is below the industry benchmark, indicating underperformance.")
+        else:
+            print(f"\n\tThe {ratio} is equal to the industry benchmark, indicating average performance.")
 
 
 def main():
@@ -324,5 +365,10 @@ def main():
     update_ratios_googlews(current_ratio, quick_ratio, net_profit_margin, return_on_assets, debt_to_equity, interest_cover)
     print("\nStep 6. Analyse Financial Results:")
     analyse_ratios(current_ratio, quick_ratio, net_profit_margin, return_on_assets, debt_to_equity, interest_cover)
+    print("\nStep 7. Carry out benchmark comparison:")
+    benchmarks = get_benchmarks()
+    compare_with_benchmarks(benchmarks, current_ratio, quick_ratio, net_profit_margin, return_on_assets,
+                                        debt_to_equity, interest_cover)
+
 if __name__ == "__main__":
     main()
