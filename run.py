@@ -369,6 +369,34 @@ def get_historical_data():
 
     return historical_data
 
+# Trend analysis
+
+def calculate_trend_analysis(historical_data):
+    """Carry out the trend analysis based on the historical data and print the results."""
+    trend_analysis = {}
+
+    for ratio, data in historical_data.items():
+        trend_analysis[ratio] = {}
+        quarters = list(data.keys())
+        for i in range(1, len(quarters)):
+            current_quarter = quarters[i]
+            previous_quarter = quarters[i - 1]
+            current_value = data[current_quarter]
+            previous_value = data[previous_quarter]
+            if previous_value != 0:  # Avoid division by zero
+                change = ((current_value - previous_value) / previous_value) * 100
+            else:
+                change = float('inf')  # Represent an infinite change
+            trend_analysis[ratio][f'{previous_quarter}-{current_quarter}'] = change
+
+    # Print the trend analysis results
+    print("\nTrend Analysis Results:")
+    for ratio, changes in trend_analysis.items():
+        print(f"\n{ratio}:")
+        for period, change in changes.items():
+            print(f"\t{period}: {change:.2f}%")
+
+    return trend_analysis
 
 def main():
     update_profit_and_loss()
@@ -389,6 +417,9 @@ def main():
     benchmarks = get_benchmarks()
     compare_with_benchmarks(benchmarks, current_ratio, quick_ratio, net_profit_margin, return_on_assets,
                                         debt_to_equity, interest_cover)
+    print("\nStep 8. Carry out trend analysis:")
+    historical_data = get_historical_data()
+    trend_analysis = calculate_trend_analysis(historical_data)
 
 if __name__ == "__main__":
     main()
