@@ -202,8 +202,21 @@ def calculate_liquidity_ratios():
     print(f"\n\tCurrent ratio: {current_ratio:.0f} times")
     print(f"\n\tQuick ratio: {quick_ratio:.0f} times")
 
+def calculate_profitability_ratios():
+    # Extract values
+    net_profit = get_value(profit_and_loss_sheet,'B27')
+    sales_revenue = get_value(profit_and_loss_sheet,'B5')
+    total_assets = get_value(balance_sheet,'B13')
 
+    # Calculations
+    net_profit_margin = (net_profit / sales_revenue) * 100
+    return_on_assets = (net_profit / total_assets) * 100
 
+    # Profitability ratios results:
+    print("\nProfitability ratios:")
+    print(f"\n\tNet Profit Margin: {net_profit_margin:.2f}%")
+    print(f"\n\tReturn on Assets: {return_on_assets:.2f}%")
+    
 
 
 def main():
@@ -215,6 +228,7 @@ def main():
     generate_balance_sheet()
     print("\nStep 4. Calculate Financial Ratios")
     calculate_liquidity_ratios()
+    calculate_profitability_ratios()
 
 if __name__ == "__main__":
     main()
