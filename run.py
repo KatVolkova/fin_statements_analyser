@@ -190,6 +190,7 @@ def generate_balance_sheet():
 # Calculate financial ratios
 
 def calculate_liquidity_ratios():
+    """Calculate liquidity ratios based on the updated financial statements: current and quick ratios"""
     # Extract values
     current_assets = get_value(balance_sheet, 'B11')
     current_liabilities = get_value(balance_sheet, 'B21')
@@ -203,6 +204,7 @@ def calculate_liquidity_ratios():
     print(f"\n\tQuick ratio: {quick_ratio:.0f} times")
 
 def calculate_profitability_ratios():
+    """Calculate profitability ratios based on the updated financial statements: net profit margin and return on assets"""
     # Extract values
     net_profit = get_value(profit_and_loss_sheet,'B27')
     sales_revenue = get_value(profit_and_loss_sheet,'B5')
@@ -218,6 +220,7 @@ def calculate_profitability_ratios():
     print(f"\n\tReturn on Assets: {return_on_assets:.2f}%")
     
 def calculate_solvency_ratios():
+    """Calculate solvency ratios based on the updated financial statements: debt-to-equity and interest cover ratios"""
     # Extract values
     total_liabilities = get_value(balance_sheet,'B21')
     total_equity = get_value(balance_sheet,'B27')
