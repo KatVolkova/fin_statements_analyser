@@ -254,9 +254,9 @@ def update_ratios_googlews(current_ratio, quick_ratio, net_profit_margin, return
     ratios_to_update = {
         'Current Ratio': ('E5', f"{current_ratio:.2f}"),
         'Quick Ratio': ('E6', f"{quick_ratio:.2f}"),
-        'Net Profit Margin': ('E8', f"{net_profit_margin:.2f}%"),
-        'Return on Assets': ('E9', f"{return_on_assets:.2f}%"),
-        'Debt-to-Equity Ratio': ('E11', f"{debt_to_equity:.2f}%"),
+        'Net Profit Margin': ('E8', f"{net_profit_margin:.2f}"),
+        'Return on Assets': ('E9', f"{return_on_assets:.2f}"),
+        'Debt-to-Equity Ratio': ('E11', f"{debt_to_equity:.2f}"),
         'Interest Cover Ratio': ('E12', f"{interest_cover:.2f}")
     }
     
@@ -323,7 +323,7 @@ def get_benchmarks():
         'interest_cover': get_value(benchmarks_sheet,'B9')
     }
 
-# Compare Actual results to Benchmark
+# Compare Actual results to Benchmarks
 
 def compare_with_benchmarks(benchmarks, current_ratio, quick_ratio, net_profit_margin, return_on_assets,
                             debt_to_equity, interest_cover):
@@ -348,6 +348,7 @@ def compare_with_benchmarks(benchmarks, current_ratio, quick_ratio, net_profit_m
             print(f"\n\tThe {ratio} is below the industry benchmark, indicating underperformance.")
         else:
             print(f"\n\tThe {ratio} is equal to the industry benchmark, indicating average performance.")
+
 
 
 def main():
