@@ -85,34 +85,33 @@ def update_balance_sheet():
 
 # Generate Financial Statememts
 
+# Function to extract data from the google sheets
+
+def get_value(worksheet, cell):
+    """Extract and convert cell value from the google sheets to float."""
+    return float(worksheet.acell(cell).value.replace(',', ''))
 
 # Geneerate the Profit and Loss account
 
 def generate_profit_and_loss():
     """Generate and display the Profit and Loss Account"""
     # Extract data from Google Sheets
-    sales_revenue = float(profit_and_loss_sheet.acell('B5').value.replace(',', ''))
-    # Calculate cost of goods sold
-    beginning_inventory = float(profit_and_loss_sheet.acell('B8').value.replace(',', ''))
-    purchased_inventory = float(profit_and_loss_sheet.acell('B9').value.replace(',', ''))
-    ending_inventory = float(profit_and_loss_sheet.acell('B10').value.replace(',', ''))
+    sales_revenue = get_value(profit_and_loss_sheet, 'B5')
+    purchased_inventory = get_value(profit_and_loss_sheet, 'B9')
+    ending_inventory = get_value(profit_and_loss_sheet, 'B10')
+    payroll = get_value(profit_and_loss_sheet, 'B16')
+    utilities = get_value(profit_and_loss_sheet, 'B17')
+    rent_expense = get_value(profit_and_loss_sheet, 'B18')
+    advertising_marketing_expenses = get_value(profit_and_loss_sheet, 'B19')
+    depreciation_expense = get_value(profit_and_loss_sheet, 'B20')
+    interest_expenses = get_value(profit_and_loss_sheet, 'B25')
+    
+    # Calculations
+   
     cost_of_goods_sold = beginning_inventory + purchased_inventory - ending_inventory
-
-    # Calculate gross profit
     gross_profit = sales_revenue - cost_of_goods_sold
-    # Extract Operating expenses from google sheets
-    payroll = float(profit_and_loss_sheet.acell('B16').value.replace(',', ''))
-    utilities = float(profit_and_loss_sheet.acell('B17').value.replace(',', ''))
-    rent_expense = float(profit_and_loss_sheet.acell('B18').value.replace(',', ''))
-    advertising_marketing_expenses = float(profit_and_loss_sheet.acell('B19').value.replace(',', ''))
-    depreciation_expense = float(profit_and_loss_sheet.acell('B20').value.replace(',', ''))
-    # Calculate  total operating expenses
     total_operating_expenses = payroll + utilities + rent_expense + advertising_marketing_expenses + depreciation_expense
-    # Calculate operating income
     operating_income = gross_profit - total_operating_expenses
-    # Extract additional data from google sheets
-    interest_expenses = float(profit_and_loss_sheet.acell('B25').value.replace(',', ''))
-    # Calculate net income
     net_income = operating_income - interest_expenses
 
     # Display profit and loss account
@@ -144,28 +143,21 @@ def generate_profit_and_loss():
 def generate_balance_sheet():
     """Generate and display the Balance Sheet"""
     # Extract data from Google Sheets
-    property_plant_equipment = float(balance_sheet.acell('B5').value.replace(',', ''))
-    cash_and_equivalents = float(balance_sheet.acell('B8').value.replace(',', ''))
-    accounts_receivable = float(balance_sheet.acell('B9').value.replace(',', ''))
-    inventory = float(balance_sheet.acell('B10').value.replace(',', ''))
-    # Calculate total assets
+    property_plant_equipment = get_value(balance_sheet,'B5')
+    cash_and_equivalents = get_value(balance_sheet,'B8')
+    accounts_receivable = get_value(balance_sheet,'B9')
+    inventory = get_value(balance_sheet,'B10')
+    long_term_debt = get_value(balance_sheet,'B16')
+    accounts_payable = get_value(balance_sheet,'B19')
+    short_term_loans = get_value(balance_sheet,'B20')
+    common_stock = get_value(balance_sheet,'B25')
+    retained_earnings = get_value(balance_sheet,'B26')
+
+    # Calculations
     total_assets = property_plant_equipment + cash_and_equivalents + accounts_receivable + inventory
-    
-    # Extract data from Google Sheets
-    long_term_debt = float(balance_sheet.acell('B16').value.replace(',', ''))
-    accounts_payable = float(balance_sheet.acell('B19').value.replace(',', ''))
-    short_term_loans = float(balance_sheet.acell('B20').value.replace(',', ''))
-
-    # Calculate total liabilities
     total_liabilities = long_term_debt + accounts_payable + short_term_loans
-
-    # Extract data from Google Sheets
-    common_stock = float(balance_sheet.acell('B25').value.replace(',', ''))
-    retained_earnings = float(balance_sheet.acell('B26').value.replace(',', ''))
-    
-    # Calculate total liabilities and equity
     total_liabilities_and_equity = total_liabilities + common_stock + retained_earnings
-
+    
     # Display the Balance Sheet
     print("\nBalance Sheet:")
     print("-------------------------------")
