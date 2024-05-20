@@ -263,6 +263,51 @@ def update_ratios_googlews(current_ratio, quick_ratio, net_profit_margin, return
         fin_ratios_sheet.update_acell(cell, value)
         print(f"\n\t{ratio_name} updated successfully")
 
+# Analyse Financial Ratios results
+
+def analyse_ratios(current_ratio, quick_ratio, net_profit_margin, return_on_assets, debt_to_equity, interest_cover):
+    print("\nLiquidity Ratios Analysis:")
+    if current_ratio >= 1.5:
+        print("\n\tCurrent ratio indicates good liquidity.")
+    elif 1 <= current_ratio < 1.5:
+        print("\n\tCurrent ratio suggests adequate liquidity, but caution may be needed.")
+    else:
+        print("\n\tCurrent ratio indicates poor liquidity, and immediate attention may be required.")
+
+    if quick_ratio >= 1:
+        print("\n\tQuick ratio indicates strong ability to meet short-term obligations.")
+    else:
+        print("\n\tQuick ratio suggests potential difficulties in meeting short-term obligations.")
+
+    print("\nProfitability Ratios Analysis:")
+    if net_profit_margin > 10:
+        print("\n\tNet profit margin indicates healthy profitability.")
+    elif 5 <= net_profit_margin <= 10:
+        print("\n\tNet profit margin suggests satisfactory profitability.")
+    else:
+        print("\n\tNet profit margin indicates low profitability, and improvement may be needed.")
+
+    if return_on_assets > 10:
+        print("\n\tReturn on assets suggests efficient utilization of assets.")
+    elif 5 <= return_on_assets <= 10:
+        print("\n\tReturn on assets indicates satisfactory performance in asset utilization.")
+    else:
+        print("\n\tReturn on assets suggests inefficiency in asset utilization, and optimization may be required.")
+
+    print("\nSolvency Ratios Analysis:")
+    if debt_to_equity < 50:
+        print("\n\tDebt-to-equity ratio indicates low financial risk.")
+    elif 50 <= debt_to_equity <= 100:
+        print("\n\tDebt-to-equity ratio suggests moderate financial risk.")
+    else:
+        print("\n\tDebt-to-equity ratio indicates high financial risk, and debt management strategies may be needed.")
+
+    if interest_cover >= 2:
+        print("\n\tInterest cover ratio indicates comfortable ability to cover interest expenses.")
+    else:
+        print("\n\tInterest cover ratio suggests potential challenges in covering interest expenses.")
+
+
 
 def main():
     update_profit_and_loss()
@@ -277,6 +322,7 @@ def main():
     debt_to_equity, interest_cover = calculate_solvency_ratios()
     print("\nStep 5. Update Google sheets with calculated ratios numbers:")
     update_ratios_googlews(current_ratio, quick_ratio, net_profit_margin, return_on_assets, debt_to_equity, interest_cover)
-
+    print("\nStep 6. Analyse Financial Results:")
+    analyse_ratios(current_ratio, quick_ratio, net_profit_margin, return_on_assets, debt_to_equity, interest_cover)
 if __name__ == "__main__":
     main()
