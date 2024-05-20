@@ -194,7 +194,9 @@ def calculate_liquidity_ratios():
     # Extract values
     current_assets = get_value(balance_sheet, 'B11')
     current_liabilities = get_value(balance_sheet, 'B21')
-    # Calculations
+    # Calculations and validation to avoid division by zero
+    if current_liabilities == 0:
+        raise ValueError("Current Liabilities should not be zero to avoid division by zero.")
     current_ratio = current_assets / current_liabilities
     quick_ratio = (current_assets - get_value(balance_sheet, 'B10')) / current_liabilities
 
@@ -210,7 +212,11 @@ def calculate_profitability_ratios():
     sales_revenue = get_value(profit_and_loss_sheet,'B5')
     total_assets = get_value(balance_sheet,'B13')
 
-    # Calculations
+    # Calculations and validation to avoid division by zero
+    if sales_revenue == 0:
+        raise ValueError("Sales Revenue should not be zero to avoid division by zero.")
+    if total_assets == 0:
+        raise ValueError("Total Assets should not be zero to avoid division by zero.")
     net_profit_margin = (net_profit / sales_revenue) * 100
     return_on_assets = (net_profit / total_assets) * 100
 
@@ -226,7 +232,11 @@ def calculate_solvency_ratios():
     total_equity = get_value(balance_sheet,'B27')
     interest_expenses = get_value(profit_and_loss_sheet,'B25')
 
-     # Calculations
+     # Calculations and validation to avoid division by zero
+    if total_equity == 0:
+        raise ValueError("Total Equity should not be zero to avoid division by zero.")
+    if interest_expenses == 0:
+        raise ValueError("Interest Expenses should not be zero to avoid division by zero.")
     debt_to_equity = (total_liabilities / total_equity) * 100
     interest_cover = (get_value(profit_and_loss_sheet,'B23') / interest_expenses)
 
