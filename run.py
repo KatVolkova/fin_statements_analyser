@@ -269,11 +269,12 @@ def update_ratios_googlews(current_ratio, quick_ratio, net_profit_margin, return
         fin_ratios_sheet.update_acell(cell, value)
         print("\n-------------------------------")
         print(f"\n\t{ratio_name} updated successfully")
-        print("-------------------------------")
+        
 
 # Analyse Financial Ratios results
 
 def analyse_ratios(current_ratio, quick_ratio, net_profit_margin, return_on_assets, debt_to_equity, interest_cover):
+    """Analyse financial ratios and provide comments"""
     print("\n-------------------------------")
     print("\nLiquidity Ratios Analysis:")
     if current_ratio >= 1.5:
