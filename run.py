@@ -23,6 +23,7 @@ benchmarks_sheet = SHEET.worksheet('industry_benchmarks')
 
 # Instructions
 
+
 def display_instructions():
     """Show instructions for the user to be followed"""
     print("\nWelcome to the Financial Analysis Tool!")
@@ -47,6 +48,7 @@ def display_instructions():
 
 # Function to validate user's input
 
+
 def validate_input(message, min_value, max_value, account_name):
     """Validate the user's input to ensure that only a number within defined range is entered"""
     while True:
@@ -70,25 +72,26 @@ def validate_input(message, min_value, max_value, account_name):
 
 # Function to update the profit and loss account
 
+
 def update_profit_and_loss():
     """Update the profit and loss account numbers for particular lines in Google sheets profit_and_loss tab"""
     
-
     accounts_to_update = {
-        'Sales Revenue': ('B5',50_000,200_000),
-        'Purchased Inventory': ('B9',10_000,100_000),
-        'Rent': ('B18',5_000,10_000),
-        'Interest Expense': ('B25',1_000,5_000)
+        'Sales Revenue': ('B5', 50_000, 200_000),
+        'Purchased Inventory': ('B9', 10_000, 100_000),
+        'Rent': ('B18', 5_000, 10_000),
+        'Interest Expense': ('B25', 1_000, 5_000)
     }
     
     for account_name, (cell, min_value, max_value) in accounts_to_update.items():
         message = f"\nPlease enter the number for {account_name}. The number should not contain any decimal places. The number should be between {min_value:,.0f} and {max_value:,.0f}: "
         value = validate_input(message, min_value, max_value, account_name)
-        profit_and_loss_sheet.update_acell(cell,value)
+        profit_and_loss_sheet.update_acell(cell, value)
         print(f"\n\t{account_name} updated successfully")
 
    
 # Funciton to update the balance sheet 
+
 
 def update_balance_sheet():
     """Update the Balance Sheet numbers for particular lines in Google sheets balance_sheet tab"""  
@@ -96,7 +99,6 @@ def update_balance_sheet():
         'Cash and Cash Equivalents': ('B8', 5_000, 50_000),
         'Short-Term Loans': ('B20', 1_000, 10_000)
     }
-    
     
     for account_name, (cell, min_value, max_value) in accounts_to_update.items():
         message = f"\nPlease enter the number for {account_name}. The number should not contain any decimal places. The number should be between {min_value:,.0f} and {max_value:,.0f}: "
@@ -109,11 +111,13 @@ def update_balance_sheet():
 
 # Function to extract data from the google sheets
 
+
 def get_value(worksheet, cell):
     """Extract and convert cell value from the google sheets to float."""
     return float(worksheet.acell(cell).value.replace(',', ''))
 
 # Geneerate the Profit and Loss account
+
 
 def generate_profit_and_loss():
     """Generate and display the Profit and Loss Account"""
@@ -166,22 +170,21 @@ def generate_profit_and_loss():
 def generate_balance_sheet():
     """Generate and display the Balance Sheet"""
     # Extract data from Google Sheets
-    property_plant_equipment = get_value(balance_sheet,'B5')
-    cash_and_equivalents = get_value(balance_sheet,'B8')
-    accounts_receivable = get_value(balance_sheet,'B9')
-    inventory = get_value(balance_sheet,'B10')
-    long_term_debt = get_value(balance_sheet,'B16')
-    accounts_payable = get_value(balance_sheet,'B19')
-    short_term_loans = get_value(balance_sheet,'B20')
-    common_stock = get_value(balance_sheet,'B25')
-    retained_earnings = get_value(balance_sheet,'B26')
+    property_plant_equipment = get_value(balance_sheet, 'B5')
+    cash_and_equivalents = get_value(balance_sheet, 'B8')
+    accounts_receivable = get_value(balance_sheet, 'B9')
+    inventory = get_value(balance_sheet, 'B10')
+    long_term_debt = get_value(balance_sheet, 'B16')
+    accounts_payable = get_value(balance_sheet, 'B19')
+    short_term_loans = get_value(balance_sheet, 'B20')
+    common_stock = get_value(balance_sheet, 'B25')
+    retained_earnings = get_value(balance_sheet, 'B26')
 
     # Calculations
     total_assets = property_plant_equipment + cash_and_equivalents + accounts_receivable + inventory
     total_liabilities = long_term_debt + accounts_payable + short_term_loans
     total_liabilities_and_equity = total_liabilities + common_stock + retained_earnings
     discrepancy = total_assets - total_liabilities_and_equity
-    
     
     # Display the Balance Sheet
     print("\nBalance Sheet:")
@@ -213,6 +216,7 @@ def generate_balance_sheet():
 
 # Calculate financial ratios
 
+
 def calculate_liquidity_ratios():
     """Calculate liquidity ratios based on the updated financial statements: current and quick ratios"""
     # Extract values
@@ -234,12 +238,13 @@ def calculate_liquidity_ratios():
     print("The quick ratio measures a company's ability to meet its short-term obligations with its most liquid assets and therefore excludes inventories from its current assets.")
     return current_ratio, quick_ratio
 
+
 def calculate_profitability_ratios():
     """Calculate profitability ratios based on the updated financial statements: net profit margin and return on assets"""
     # Extract values
-    net_profit = get_value(profit_and_loss_sheet,'B27')
-    sales_revenue = get_value(profit_and_loss_sheet,'B5')
-    total_assets = get_value(balance_sheet,'B13')
+    net_profit = get_value(profit_and_loss_sheet, 'B27')
+    sales_revenue = get_value(profit_and_loss_sheet, 'B5')
+    total_assets = get_value(balance_sheet, 'B13')
 
     # Calculations and validation to avoid division by zero
     if sales_revenue == 0:
@@ -259,20 +264,21 @@ def calculate_profitability_ratios():
     print("Profitability is assessed relative to costs and expenses. It's analyzed in comparison to assets to see how effective a company is at deploying assets to generate sales and profits. ")
     return net_profit_margin, return_on_assets
     
+
 def calculate_solvency_ratios():
     """Calculate solvency ratios based on the updated financial statements: debt-to-equity and interest cover ratios"""
     # Extract values
-    total_liabilities = get_value(balance_sheet,'B21')
-    total_equity = get_value(balance_sheet,'B27')
-    interest_expenses = get_value(profit_and_loss_sheet,'B25')
+    total_liabilities = get_value(balance_sheet, 'B21')
+    total_equity = get_value(balance_sheet, 'B27')
+    interest_expenses = get_value(profit_and_loss_sheet, 'B25')
 
-     # Calculations and validation to avoid division by zero
+    # Calculations and validation to avoid division by zero
     if total_equity == 0:
         raise ValueError("Total Equity should not be zero to avoid division by zero.")
     if interest_expenses == 0:
         raise ValueError("Interest Expenses should not be zero to avoid division by zero.")
     debt_to_equity = (total_liabilities / total_equity) * 100
-    interest_cover = (get_value(profit_and_loss_sheet,'B23') / interest_expenses)
+    interest_cover = (get_value(profit_and_loss_sheet, 'B23') / interest_expenses)
 
     # Solvency ratios results:
     print("\n-------------------------------")
@@ -285,6 +291,7 @@ def calculate_solvency_ratios():
     print("\n-------------------------------")
     return debt_to_equity, interest_cover
    
+
 def update_ratios_googlews(current_ratio, quick_ratio, net_profit_margin, return_on_assets, debt_to_equity, interest_cover):
     """Update the Google Sheet with the calculated financial ratios"""
     ratios_to_update = {
@@ -303,6 +310,7 @@ def update_ratios_googlews(current_ratio, quick_ratio, net_profit_margin, return
         
 
 # Analyse Financial Ratios results
+
 
 def analyse_ratios(current_ratio, quick_ratio, net_profit_margin, return_on_assets, debt_to_equity, interest_cover):
     """Analyse financial ratios and provide comments"""
@@ -367,24 +375,25 @@ def analyse_ratios(current_ratio, quick_ratio, net_profit_margin, return_on_asse
         for ratio in negative_ratios:
             print(f"\t- {ratio}")
 
-    
 
 # Actual vs Benchmark ratios comparison
 
 # Extract Benchmark Values
 
+
 def get_benchmarks():
     """Extract benchmark values from Google sheets"""
     return {
-        'current_ratio': get_value(benchmarks_sheet,'B4'),
-        'quick_ratio': get_value(benchmarks_sheet,'B5'),
-        'net_profit_margin': get_value(benchmarks_sheet,'B6'),
-        'return_on_assets': get_value(benchmarks_sheet,'B7'),
-        'debt_to_equity': get_value(benchmarks_sheet,'B8'),
-        'interest_cover': get_value(benchmarks_sheet,'B9')
+        'current_ratio': get_value(benchmarks_sheet, 'B4'),
+        'quick_ratio': get_value(benchmarks_sheet, 'B5'),
+        'net_profit_margin': get_value(benchmarks_sheet, 'B6'),
+        'return_on_assets': get_value(benchmarks_sheet, 'B7'),
+        'debt_to_equity': get_value(benchmarks_sheet, 'B8'),
+        'interest_cover': get_value(benchmarks_sheet, 'B9')
     }
 
 # Compare Actual results to Benchmarks
+
 
 def compare_with_benchmarks(benchmarks, current_ratio, quick_ratio, net_profit_margin, return_on_assets,
                             debt_to_equity, interest_cover):
@@ -423,6 +432,7 @@ def compare_with_benchmarks(benchmarks, current_ratio, quick_ratio, net_profit_m
 
 # Extract historical data
 
+
 def get_historical_data():
     """Extract historical data for four quarters from Google Sheets."""
     quarters = ['Q1', 'Q2', 'Q3', 'Q4']
@@ -440,6 +450,7 @@ def get_historical_data():
     return historical_data
 
 # Trend analysis
+
 
 def calculate_trend_analysis(historical_data):
     """Carry out the trend analysis based on the historical data and print the results."""
@@ -483,6 +494,7 @@ def calculate_trend_analysis(historical_data):
 
     return trend_analysis
 
+
 def main():
     print("\nFinancial report for the ABC company operating in the retail industry as at 31 of December 20X3")
     print("\nStep 1. Update Profit and Loss account numbers:")
@@ -522,8 +534,7 @@ def main():
             print("\nBenchmark Comparison Analysis:")
             print("\n-------------------------------")
             benchmarks = get_benchmarks()
-            compare_with_benchmarks(benchmarks, current_ratio, quick_ratio, net_profit_margin, return_on_assets,
-                                            debt_to_equity, interest_cover)
+            compare_with_benchmarks(benchmarks, current_ratio, quick_ratio, net_profit_margin, return_on_assets, debt_to_equity, interest_cover)
         elif user_choice == 'III':
             print("\n-------------------------------")
             print("\nTrend Analysis Results:")
@@ -537,8 +548,7 @@ def main():
             print("\nBenchmark Comparison Analysis:")
             print("\n-------------------------------")
             benchmarks = get_benchmarks()
-            compare_with_benchmarks(benchmarks, current_ratio, quick_ratio, net_profit_margin, return_on_assets,
-                                            debt_to_equity, interest_cover)
+            compare_with_benchmarks(benchmarks, current_ratio, quick_ratio, net_profit_margin, return_on_assets, debt_to_equity, interest_cover)
             print("\n-------------------------------")
             print("\nTrend Analysis Results:")
             print("\n-------------------------------")
@@ -550,13 +560,13 @@ def main():
             print("\tBenchmark comparison helps to understand the company's standing relative to industry standards.")
             print("\tTrend analysis reveals whether the company's financial health is improving or deteriorating over time.")
             print("\n-------------------------------")
-            
         elif user_choice == 'V':
             print("\nExiting the program.")
             break
         else:
             print("\nInvalid choice. Please select a valid option.")
-    
+
+
 if __name__ == "__main__":
     display_instructions()
     main()
