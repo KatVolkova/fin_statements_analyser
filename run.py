@@ -159,6 +159,8 @@ def generate_balance_sheet():
     total_assets = property_plant_equipment + cash_and_equivalents + accounts_receivable + inventory
     total_liabilities = long_term_debt + accounts_payable + short_term_loans
     total_liabilities_and_equity = total_liabilities + common_stock + retained_earnings
+    discrepancy = total_assets - total_liabilities_and_equity
+    
     
     # Display the Balance Sheet
     print("\nBalance Sheet:")
@@ -186,7 +188,7 @@ def generate_balance_sheet():
     print("-------------------------------")
     print(f"Total Liabilities and Equity: ${total_liabilities_and_equity:,.2f}")
     print("-------------------------------")
-
+    print(f"Discrepancy to Investigate: ${discrepancy:,.2f}")
 
 # Calculate financial ratios
 
