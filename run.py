@@ -434,15 +434,41 @@ def main():
     debt_to_equity, interest_cover = calculate_solvency_ratios()
     print("\nStep 5. Update Google sheets with calculated ratios numbers:")
     update_ratios_googlews(current_ratio, quick_ratio, net_profit_margin, return_on_assets, debt_to_equity, interest_cover)
-    print("\nStep 6. Analyse Financial Results:")
-    analyse_ratios(current_ratio, quick_ratio, net_profit_margin, return_on_assets, debt_to_equity, interest_cover)
-    print("\nStep 7. Carry out benchmark comparison:")
-    benchmarks = get_benchmarks()
-    compare_with_benchmarks(benchmarks, current_ratio, quick_ratio, net_profit_margin, return_on_assets,
-                                        debt_to_equity, interest_cover)
-    print("\nStep 8. Carry out trend analysis:")
-    historical_data = get_historical_data()
-    trend_analysis = calculate_trend_analysis(historical_data)
-
+    
+    while True:
+        print("\nWhat would you like to generate next:")
+        print("I. Financial ratios analysis")
+        print("II. Benchmark comparison")
+        print("III. Trend analysis")
+        print("IV. Complete financial report (all points from I to III)")
+        print("V. Exit")
+        user_choice = input("Enter your choice (I, II, III, IV, V): ").strip().upper()
+        if user_choice == 'I':
+            print("\nStep 6. Analyse Financial Results:")
+            analyse_ratios(current_ratio, quick_ratio, net_profit_margin, return_on_assets, debt_to_equity, interest_cover)
+        elif user_choice == 'II':
+            print("\nStep 7. Carry out benchmark comparison:")
+            benchmarks = get_benchmarks()
+            compare_with_benchmarks(benchmarks, current_ratio, quick_ratio, net_profit_margin, return_on_assets,
+                                            debt_to_equity, interest_cover)
+        elif user_choice == 'III':
+            print("\nStep 8. Carry out trend analysis:")
+            historical_data = get_historical_data()
+            trend_analysis = calculate_trend_analysis(historical_data)
+        elif user_choice == 'IV':
+            print("\nStep 6. Analyse Financial Results:")
+            analyse_ratios(current_ratio, quick_ratio, net_profit_margin, return_on_assets, debt_to_equity, interest_cover)
+            print("\nStep 7. Carry out benchmark comparison:")
+            benchmarks = get_benchmarks()
+            compare_with_benchmarks(benchmarks, current_ratio, quick_ratio, net_profit_margin, return_on_assets,
+                                            debt_to_equity, interest_cover)
+            historical_data = get_historical_data()
+            trend_analysis = calculate_trend_analysis(historical_data)
+        elif user_choice == 'V':
+            print("Exiting the program.")
+            break
+        else:
+            print("Invalid choice. Please select a valid option.")
+    
 if __name__ == "__main__":
     main()
