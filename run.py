@@ -338,7 +338,7 @@ def analyse_ratios(current_ratio, quick_ratio, net_profit_margin, return_on_asse
     print("\nSolvency Ratios Analysis:")
     if debt_to_equity < 50:
         print("\n\tDebt-to-equity ratio indicates low financial risk.")
-    elif 50 <= debt_to_equity <= 100:
+    elif 50 <= debt_to_equity <= 60:
         print("\n\tDebt-to-equity ratio suggests moderate financial risk.")
     else:
         print("\n\tDebt-to-equity ratio indicates high financial risk, and debt management strategies may be needed.")
@@ -383,12 +383,20 @@ def compare_with_benchmarks(benchmarks, current_ratio, quick_ratio, net_profit_m
         unit = 'times' if ratio in ['Current Ratio', 'Quick Ratio', 'Interest Cover'] else '%'
         
         print(f"\n\t{ratio}: {value:.2f} {unit} (Benchmark: {benchmark_value:.2f} {unit})")
-        if value > benchmark_value:
-            print(f"\n\tThe {ratio} is above the industry benchmark, indicating better performance.")
-        elif value < benchmark_value:
-            print(f"\n\tThe {ratio} is below the industry benchmark, indicating underperformance.")
+        if ratio == 'Debt to Equity':
+            if value < benchmark_value:
+                print(f"\n\tThe {ratio} is below the industry benchmark, indicating better performance.")
+            elif value > benchmark_value:
+                print(f"\n\tThe {ratio} is above the industry benchmark, indicating higher financial risk.")
+            else:
+                print(f"\n\tThe {ratio} is equal to the industry benchmark, indicating average performance.")
         else:
-            print(f"\n\tThe {ratio} is equal to the industry benchmark, indicating average performance.")
+            if value > benchmark_value:
+                print(f"\n\tThe {ratio} is above the industry benchmark, indicating better performance.")
+            elif value < benchmark_value:
+                print(f"\n\tThe {ratio} is below the industry benchmark, indicating underperformance.")
+            else:
+                print(f"\n\tThe {ratio} is equal to the industry benchmark, indicating average performance.")
 
 # Carry out the trend analysis based on historical data
 
