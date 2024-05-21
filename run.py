@@ -421,9 +421,13 @@ def main():
     print("\nStep 2. Update the Balance Sheet numbers:")
     update_balance_sheet()
     print("\nThe Balance sheet has been updated")
-    print("\nStep 3. Generate Financial Statements")
-    generate_profit_and_loss()
-    generate_balance_sheet()
+    generate_statements = input("\nWould you like to generate the Profit and Loss account and Balance Sheet? (y/n): ").strip().lower()
+    if generate_statements == 'y':
+        print("\nStep 3. Generate Financial Statements")
+        generate_profit_and_loss()
+        generate_balance_sheet()
+    else:
+        print("\nSkipped generating Profit and Loss account and Balance Sheet.")
     print("\nStep 4. Calculate Financial Ratios")
     current_ratio, quick_ratio = calculate_liquidity_ratios()
     net_profit_margin, return_on_assets = calculate_profitability_ratios()
