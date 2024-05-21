@@ -227,8 +227,11 @@ def calculate_liquidity_ratios():
     # Liquidity ratios results:
     print("\n-------------------------------")
     print("Liquidity ratios:")
+    print("\nLiquidity ratios are a class of financial metrics used to determine a debtor's ability to pay off current debt obligations without raising external capital. ")
     print(f"\n\tCurrent ratio: {current_ratio:.2f} times")
+    print("The current ratio measures a company's ability to pay off its current liabilities (payable within one year) with its total current assets")
     print(f"\n\tQuick ratio: {quick_ratio:.2f} times")
+    print("The quick ratio measures a company's ability to meet its short-term obligations with its most liquid assets and therefore excludes inventories from its current assets.")
     return current_ratio, quick_ratio
 
 def calculate_profitability_ratios():
@@ -249,8 +252,11 @@ def calculate_profitability_ratios():
     # Profitability ratios results:
     print("\n-------------------------------")
     print("Profitability ratios:")
+    print("Profitability ratios are a class of financial metrics that are used to assess a business's ability to generate earnings relative to its revenue,operating costs, balance sheet assets or equity")
     print(f"\n\tNet Profit Margin: {net_profit_margin:.2f}%")
+    print("Net margin, reflects a company's ability to generate earnings after all expenses and taxes are accounted for. It's obtained by dividing net income into total revenue. ")
     print(f"\n\tReturn on Assets: {return_on_assets:.2f}%")
+    print("Profitability is assessed relative to costs and expenses. It's analyzed in comparison to assets to see how effective a company is at deploying assets to generate sales and profits. ")
     return net_profit_margin, return_on_assets
     
 def calculate_solvency_ratios():
@@ -271,8 +277,11 @@ def calculate_solvency_ratios():
     # Solvency ratios results:
     print("\n-------------------------------")
     print("Solvency ratios:")
+    print("A solvency ratio is a key metric used to measure an enterprise’s ability to meet its long-term debt obligations.")
     print(f"\n\tDebt-to-Equity ratio: {debt_to_equity:.2f}%")
+    print("The debt-to-equity ratio indicates how a company is funded, in this case, by debt. The higher the ratio, the more debt a company has on its books, meaning the likelihood of default is higher.")
     print(f"\n\tInterest cover ratio: {interest_cover:.2f} times")
+    print("The interest cover ratio is used to measure how well a firm can pay the interest due on outstanding debt")
     print("\n-------------------------------")
     return debt_to_equity, interest_cover
    
