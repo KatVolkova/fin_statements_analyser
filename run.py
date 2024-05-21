@@ -75,10 +75,10 @@ def update_profit_and_loss():
     
 
     accounts_to_update = {
-        'Sales Revenue': ('B5',50_000,500_000),
-        'Purchased Inventory': ('B9',10_000,200_000),
-        'Rent': ('B18',5_000,20_000),
-        'Interest Expense': ('B25',1_000,10_000)
+        'Sales Revenue': ('B5',50_000,200_000),
+        'Purchased Inventory': ('B9',10_000,100_000),
+        'Rent': ('B18',5_000,10_000),
+        'Interest Expense': ('B25',1_000,5_000)
     }
     
     for account_name, (cell, min_value, max_value) in accounts_to_update.items():
@@ -93,8 +93,8 @@ def update_profit_and_loss():
 def update_balance_sheet():
     """Update the Balance Sheet numbers for particular lines in Google sheets balance_sheet tab"""  
     accounts_to_update = {
-        'Cash and Cash Equivalents': ('B8', 5_000, 100_000),
-        'Short-Term Loans': ('B20', 1_000, 50_000)
+        'Cash and Cash Equivalents': ('B8', 5_000, 50_000),
+        'Short-Term Loans': ('B20', 1_000, 10_000)
     }
     
     
