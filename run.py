@@ -21,6 +21,28 @@ balance_sheet = SHEET.worksheet('balance_sheet')
 fin_ratios_sheet = SHEET.worksheet('ratios_historical_data')
 benchmarks_sheet = SHEET.worksheet('industry_benchmarks')
 
+# Instructions
+
+def display_instructions():
+    """Show instructions for the user to be followed"""
+    print("\nWelcome to the Financial Analysis Tool!")
+    print("\nPlease follow the steps below to update and generate financial report:")
+    print("\n1. Update the Profit and Loss account numbers:")
+    print("   - You will be prompted to enter values for Sales Revenue, Purchased Inventory, Rent Expense, and Interest Expenses.")
+    print("   - Ensure the values you enter are within the specified ranges.")
+    print("\n2. Update the Balance Sheet numbers:")
+    print("   - You will be prompted to enter values for Cash and Cash Equivalents, and Short-Term Loans.")
+    print("   - Ensure the values you enter are within the specified ranges.")
+    print("\n3. Generate Financial Statements:")
+    print("   - Confirm whether you would like to generate the updated Profit and Loss account and Balance Sheet.")
+    print("\n4. Calculate Financial Ratios:")
+    print("   - Based on the updated data the tool will calculate liquidity, profitability, and solvency ratios.")
+    print("\n5. Analyse and Compare Ratios:")
+    print("   - You will be prompted to choose to analyse financial ratios, compare with industry benchmarks, perform trend analysis, or generate a complete financial report.")
+    print("\n6. Follow the prompts and enter values/option points as requested.")
+    print("\n7. To exit at any point, simply type 'exit'.")
+    
+
 # Financial statements update
 
 # Function to validate user's input
@@ -497,4 +519,5 @@ def main():
             print("\nInvalid choice. Please select a valid option.")
     
 if __name__ == "__main__":
+    display_instructions()
     main()
