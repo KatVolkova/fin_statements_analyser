@@ -348,6 +348,27 @@ def analyse_ratios(current_ratio, quick_ratio, net_profit_margin, return_on_asse
     else:
         print("\n\tInterest cover ratio suggests potential challenges in covering interest expenses.")
 
+    negative_ratios = []
+    if current_ratio < 0:
+        negative_ratios.append("current ratio")
+    if quick_ratio < 0:
+        negative_ratios.append("quick ratio")
+    if net_profit_margin < 0:
+        negative_ratios.append("net profit margin")
+    if return_on_assets < 0:
+        negative_ratios.append("return on assets")
+    if debt_to_equity < 0:
+        negative_ratios.append("debt-to-equity ratio")
+    if interest_cover < 0:
+        negative_ratios.append("interest cover ratio")
+    
+    if negative_ratios:
+        print("\n\tWarning: The following ratios are negative, indicating severe financial distress. Immediate investigation required:")
+        for ratio in negative_ratios:
+            print(f"\t- {ratio}")
+
+    
+
 # Actual vs Benchmark ratios comparison
 
 # Extract Benchmark Values
