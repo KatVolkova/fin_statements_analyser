@@ -377,10 +377,11 @@ def compare_with_benchmarks(benchmarks, current_ratio, quick_ratio, net_profit_m
         'Interest Cover': interest_cover
     }
 
-    
+    print("Benchmarking is the practice of comparing performance metrics to industry bests and best practices from other companies")
     for ratio, value in ratios.items():
         benchmark_value = benchmarks[ratio.lower().replace(' ', '_')]
         unit = 'times' if ratio in ['Current Ratio', 'Quick Ratio', 'Interest Cover'] else '%'
+        
         print(f"\n\t{ratio}: {value:.2f} {unit} (Benchmark: {benchmark_value:.2f} {unit})")
         if value > benchmark_value:
             print(f"\n\tThe {ratio} is above the industry benchmark, indicating better performance.")
@@ -430,7 +431,7 @@ def calculate_trend_analysis(historical_data):
             trend_analysis[ratio][f'{previous_quarter}-{current_quarter}'] = change
 
     # Trend analysis results with commentary
-    
+    print("Trend analysis is defined as a statistical and analytical technique used to evaluate and identify patterns, trends, or changes in data over time.")
     for ratio, changes in trend_analysis.items():
         print(f"\n{ratio}:")
         for period, change in changes.items():
