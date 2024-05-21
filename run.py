@@ -59,7 +59,6 @@ def update_profit_and_loss():
         'Interest Expense': ('B25',1_000,10_000)
     }
     
-    print("\nStep 1. Update Profit and Loss account numbers:")
     for account_name, (cell, min_value, max_value) in accounts_to_update.items():
         message = f"\nPlease enter the number for {account_name}. The number should not contain any decimal places. The number should be between {min_value:,.0f} and {max_value:,.0f}: "
         value = validate_input(message, min_value, max_value, account_name)
@@ -76,7 +75,7 @@ def update_balance_sheet():
         'Short-Term Loans': ('B20', 1_000, 50_000)
     }
     
-    print("\nStep 2. Update the Balance Sheet numbers:")
+    
     for account_name, (cell, min_value, max_value) in accounts_to_update.items():
         message = f"\nPlease enter the number for {account_name}. The number should not contain any decimal places. The number should be between {min_value:,.0f} and {max_value:,.0f}: "
         value = validate_input(message, min_value, max_value, account_name)
@@ -117,7 +116,7 @@ def generate_profit_and_loss():
     net_income = operating_income - interest_expenses
 
     # Display profit and loss account
-    print("\nStep 3. Generate Financial Statements")
+    
     print("\nProfit and Loss Account:")
     print("-------------------------------")
     print(f"Sales Revenue: ${sales_revenue:,.2f}")
@@ -416,10 +415,13 @@ def calculate_trend_analysis(historical_data):
     return trend_analysis
 
 def main():
+    print("\nStep 1. Update Profit and Loss account numbers:")
     update_profit_and_loss()
     print("\nThe Profit and loss account has been updated")
+    print("\nStep 2. Update the Balance Sheet numbers:")
     update_balance_sheet()
     print("\nThe Balance sheet has been updated")
+    print("\nStep 3. Generate Financial Statements")
     generate_profit_and_loss()
     generate_balance_sheet()
     print("\nStep 4. Calculate Financial Ratios")
