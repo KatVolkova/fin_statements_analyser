@@ -482,6 +482,13 @@ def main():
             print("\n-------------------------------")
             historical_data = get_historical_data()
             trend_analysis = calculate_trend_analysis(historical_data)
+            print("\nSummary:")
+            print("\n\tThe financial report generated for ABC company reviews its overall financial health and performance.")
+            print("\tKey points include updated profit and loss figures, balance sheet numbers, and a comprehensive analysis of financial ratios.")
+            print("\tBenchmark comparison helps to understand the company's standing relative to industry standards.")
+            print("\tTrend analysis reveals whether the company's financial health is improving or deteriorating over time.")
+            print("\n-------------------------------")
+            
         elif user_choice == 'V':
             print("\nExiting the program.")
             break
