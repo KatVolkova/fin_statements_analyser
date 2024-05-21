@@ -203,7 +203,8 @@ def calculate_liquidity_ratios():
     quick_ratio = (current_assets - get_value(balance_sheet, 'B10')) / current_liabilities
 
     # Liquidity ratios results:
-    print("\nLiquidity ratios:")
+    print("\n-------------------------------")
+    print("Liquidity ratios:")
     print(f"\n\tCurrent ratio: {current_ratio:.2f} times")
     print(f"\n\tQuick ratio: {quick_ratio:.2f} times")
     return current_ratio, quick_ratio
@@ -224,7 +225,8 @@ def calculate_profitability_ratios():
     return_on_assets = (net_profit / total_assets) * 100
 
     # Profitability ratios results:
-    print("\nProfitability ratios:")
+    print("\n-------------------------------")
+    print("Profitability ratios:")
     print(f"\n\tNet Profit Margin: {net_profit_margin:.2f}%")
     print(f"\n\tReturn on Assets: {return_on_assets:.2f}%")
     return net_profit_margin, return_on_assets
@@ -245,9 +247,11 @@ def calculate_solvency_ratios():
     interest_cover = (get_value(profit_and_loss_sheet,'B23') / interest_expenses)
 
     # Solvency ratios results:
-    print("\nSolvency ratios:")
+    print("\n-------------------------------")
+    print("Solvency ratios:")
     print(f"\n\tDebt-to-Equity ratio: {debt_to_equity:.2f}%")
     print(f"\n\tInterest cover ratio: {interest_cover:.2f} times")
+    print("\n-------------------------------")
     return debt_to_equity, interest_cover
    
 def update_ratios_googlews(current_ratio, quick_ratio, net_profit_margin, return_on_assets, debt_to_equity, interest_cover):
@@ -263,11 +267,14 @@ def update_ratios_googlews(current_ratio, quick_ratio, net_profit_margin, return
     
     for ratio_name, (cell, value) in ratios_to_update.items():
         fin_ratios_sheet.update_acell(cell, value)
+        print("\n-------------------------------")
         print(f"\n\t{ratio_name} updated successfully")
+        print("-------------------------------")
 
 # Analyse Financial Ratios results
 
 def analyse_ratios(current_ratio, quick_ratio, net_profit_margin, return_on_assets, debt_to_equity, interest_cover):
+    print("\n-------------------------------")
     print("\nLiquidity Ratios Analysis:")
     if current_ratio >= 1.5:
         print("\n\tCurrent ratio indicates good liquidity.")
@@ -280,7 +287,7 @@ def analyse_ratios(current_ratio, quick_ratio, net_profit_margin, return_on_asse
         print("\n\tQuick ratio indicates strong ability to meet short-term obligations.")
     else:
         print("\n\tQuick ratio suggests potential difficulties in meeting short-term obligations.")
-
+    print("\n-------------------------------")
     print("\nProfitability Ratios Analysis:")
     if net_profit_margin > 10:
         print("\n\tNet profit margin indicates healthy profitability.")
@@ -295,7 +302,7 @@ def analyse_ratios(current_ratio, quick_ratio, net_profit_margin, return_on_asse
         print("\n\tReturn on assets indicates satisfactory performance in asset utilization.")
     else:
         print("\n\tReturn on assets suggests inefficiency in asset utilization, and optimization may be required.")
-
+    print("\n-------------------------------")
     print("\nSolvency Ratios Analysis:")
     if debt_to_equity < 50:
         print("\n\tDebt-to-equity ratio indicates low financial risk.")
@@ -338,7 +345,7 @@ def compare_with_benchmarks(benchmarks, current_ratio, quick_ratio, net_profit_m
         'Interest Cover': interest_cover
     }
 
-    print("\nBenchmark Comparison Analysis:")
+    
     for ratio, value in ratios.items():
         benchmark_value = benchmarks[ratio.lower().replace(' ', '_')]
         unit = 'times' if ratio in ['Current Ratio', 'Quick Ratio', 'Interest Cover'] else '%'
@@ -390,8 +397,8 @@ def calculate_trend_analysis(historical_data):
                 change = float('inf')  
             trend_analysis[ratio][f'{previous_quarter}-{current_quarter}'] = change
 
-    # Print the trend analysis results with commentary
-    print("\nTrend Analysis Results:")
+    # Trend analysis results with commentary
+    
     for ratio, changes in trend_analysis.items():
         print(f"\n{ratio}:")
         for period, change in changes.items():
@@ -415,6 +422,7 @@ def calculate_trend_analysis(historical_data):
     return trend_analysis
 
 def main():
+    print("\nFinancial report for the ABC company operating in the retail industry as at 31 of December 20X3")
     print("\nStep 1. Update Profit and Loss account numbers:")
     update_profit_and_loss()
     print("\nThe Profit and loss account has been updated")
@@ -427,7 +435,7 @@ def main():
         generate_profit_and_loss()
         generate_balance_sheet()
     else:
-        print("\nSkipped generating Profit and Loss account and Balance Sheet.")
+        print("\nGenerating Profit and Loss account and Balance Sheet has been omitted.")
     print("\nStep 4. Calculate Financial Ratios")
     current_ratio, quick_ratio = calculate_liquidity_ratios()
     net_profit_margin, return_on_assets = calculate_profitability_ratios()
@@ -437,38 +445,48 @@ def main():
     
     while True:
         print("\nWhat would you like to generate next:")
-        print("I. Financial ratios analysis")
+        print("\nI. Financial ratios analysis")
         print("II. Benchmark comparison")
         print("III. Trend analysis")
         print("IV. Complete financial report (all points from I to III)")
         print("V. Exit")
-        user_choice = input("Enter your choice (I, II, III, IV, V): ").strip().upper()
+        user_choice = input("\nEnter your choice (I, II, III, IV, V): ").strip().upper()
+        print("\n-------------------------------")
         if user_choice == 'I':
-            print("\nStep 6. Analyse Financial Results:")
+            print("\nFinancial Ratios Results:")
             analyse_ratios(current_ratio, quick_ratio, net_profit_margin, return_on_assets, debt_to_equity, interest_cover)
         elif user_choice == 'II':
-            print("\nStep 7. Carry out benchmark comparison:")
+            print("\n-------------------------------")
+            print("\nBenchmark Comparison Analysis:")
+            print("\n-------------------------------")
             benchmarks = get_benchmarks()
             compare_with_benchmarks(benchmarks, current_ratio, quick_ratio, net_profit_margin, return_on_assets,
                                             debt_to_equity, interest_cover)
         elif user_choice == 'III':
-            print("\nStep 8. Carry out trend analysis:")
+            print("\n-------------------------------")
+            print("\nTrend Analysis Results:")
+            print("\n-------------------------------")
             historical_data = get_historical_data()
             trend_analysis = calculate_trend_analysis(historical_data)
         elif user_choice == 'IV':
-            print("\nStep 6. Analyse Financial Results:")
+            print("\nFinancial Ratios Results:")
             analyse_ratios(current_ratio, quick_ratio, net_profit_margin, return_on_assets, debt_to_equity, interest_cover)
-            print("\nStep 7. Carry out benchmark comparison:")
+            print("\n-------------------------------")
+            print("\nBenchmark Comparison Analysis:")
+            print("\n-------------------------------")
             benchmarks = get_benchmarks()
             compare_with_benchmarks(benchmarks, current_ratio, quick_ratio, net_profit_margin, return_on_assets,
                                             debt_to_equity, interest_cover)
+            print("\n-------------------------------")
+            print("\nTrend Analysis Results:")
+            print("\n-------------------------------")
             historical_data = get_historical_data()
             trend_analysis = calculate_trend_analysis(historical_data)
         elif user_choice == 'V':
-            print("Exiting the program.")
+            print("\nExiting the program.")
             break
         else:
-            print("Invalid choice. Please select a valid option.")
+            print("\nInvalid choice. Please select a valid option.")
     
 if __name__ == "__main__":
     main()
