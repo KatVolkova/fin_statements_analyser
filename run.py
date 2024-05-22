@@ -5,7 +5,7 @@ from colorama import init, Fore, Back, Style
 
 init(autoreset=True)
 
-# Authenticate and authorise the google sheets API
+# Authenticate and authorise the Google Sheets API
 
 SCOPE = [
     "https://www.googleapis.com/auth/spreadsheets",
@@ -19,7 +19,7 @@ GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open('financial_statements')
 
 
-# Get the worksheets objects
+# Get the worksheet objects
 profit_and_loss_sheet = SHEET.worksheet('profit_and_loss')
 balance_sheet = SHEET.worksheet('balance_sheet')
 fin_ratios_sheet = SHEET.worksheet('ratios_historical_data')
@@ -39,7 +39,7 @@ def print_with_delay(text, delay=0.05):
 
 
 def display_instructions():
-    """Show instructions for the user to be followed"""
+    """Show instructions for the user to follow"""
     print(f"\n{Fore.BLUE}Welcome to the Financial Analysis Tool!")
     print_with_delay("\nPlease follow the steps below to update and generate financial report:")
     time.sleep(1)
@@ -71,7 +71,7 @@ def display_instructions():
 
 
 def validate_input(message, min_value, max_value, account_name):
-    """Validate the user's input to ensure that only a number within defined range is entered"""
+    """Validate the user's input to ensure that only a number within the defined range is entered"""
     while True:
         try:
             value = input(message).replace(',', '')
@@ -111,7 +111,7 @@ def update_profit_and_loss():
         print_with_delay(f"\n\t{account_name} updated successfully")
 
    
-# Funciton to update the balance sheet 
+# Function to update the balance sheet 
 
 
 def update_balance_sheet():
@@ -128,7 +128,7 @@ def update_balance_sheet():
         print_with_delay(f"\n\t{account_name} updated successfully") 
 
 
-# Generate Financial Statememts
+# Generate Financial Statements
 
 # Function to extract data from the google sheets
 
@@ -137,11 +137,11 @@ def get_value(worksheet, cell):
     """Extract and convert cell value from the google sheets to float."""
     return float(worksheet.acell(cell).value.replace(',', ''))
 
-# Geneerate the Profit and Loss account
+# Generate the Profit and Loss account
 
 
 def generate_profit_and_loss():
-    """Generate and display the Profit and Loss Account"""
+    """Generate and display the Profit and Loss account"""
     # Extract data from Google Sheets
     sales_revenue = get_value(profit_and_loss_sheet, 'B5')
     beginning_inventory = get_value(profit_and_loss_sheet, 'B8')
@@ -280,9 +280,9 @@ def calculate_profitability_ratios():
     # Profitability ratios results:
     print("\n-------------------------------")
     print(f"\n{Fore.BLUE}Profitability ratios:")
-    print(f"{Back.BLUE}Profitability ratios are a class of financial metrics that are used to assess a business's ability to generate earnings relative to its revenue,operating costs, balance sheet assets or equity")
+    print(f"{Back.BLUE}Profitability ratios are a class of financial metrics that are used to assess a business's ability to generate earnings relative to its revenue, operating costs, balance sheet assets or equity")
     print(f"\n\t{Fore.BLUE}\n\tNet Profit Margin: {net_profit_margin:.2f}%")
-    print(f"{Back.BLUE}Net margin, reflects a company's ability to generate earnings after all expenses and taxes are accounted for. It's obtained by dividing net income into total revenue. ")
+    print(f"{Back.BLUE}Net margin reflects a company's ability to generate earnings after all expenses and taxes are accounted for. It's obtained by dividing net income into total revenue. ")
     print(f"\n\t{Fore.BLUE}Return on Assets: {return_on_assets:.2f}%")
     print(f"{Back.BLUE}Profitability is assessed relative to costs and expenses. It's analyzed in comparison to assets to see how effective a company is at deploying assets to generate sales and profits. ")
     return net_profit_margin, return_on_assets
@@ -332,7 +332,7 @@ def update_ratios_googlews(current_ratio, quick_ratio, net_profit_margin, return
         print_with_delay(f"\n\t{ratio_name} updated successfully")
         
 
-# Analyse Financial Ratios results
+# Analyse Financial Ratios Results
 
 
 def analyse_ratios(current_ratio, quick_ratio, net_profit_margin, return_on_assets, debt_to_equity, interest_cover):
