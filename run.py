@@ -1,6 +1,9 @@
 import gspread
 from google.oauth2.service_account import Credentials
+from colorama import init, Fore, Style
 import time
+
+init(autoreset=True)
 
 # Authenticate and authorise the google sheets API
 
@@ -37,7 +40,7 @@ def print_with_delay(text, delay=0.05):
 
 def display_instructions():
     """Show instructions for the user to be followed"""
-    print_with_delay("\nWelcome to the Financial Analysis Tool!")
+    print_with_delay(f"{Fore.RED}\nWelcome to the Financial Analysis Tool!")
     print_with_delay("\nPlease follow the steps below to update and generate financial report:")
     time.sleep(1)
     print_with_delay("\n1. Update the Profit and Loss account numbers:")
