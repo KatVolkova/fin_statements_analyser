@@ -783,12 +783,13 @@ def main():
             "\nGenerating Profit and Loss account and "
             "Balance Sheet has been omitted.")
         time.sleep(1)
-    print(f"\n{Fore.BLUE}Step 4. Calculate Financial Ratios")
+    print_with_delay("\nStep 4. Calculate Financial Ratios")
+    time.sleep(1)
     current_ratio, quick_ratio = calculate_liquidity_ratios()
     net_profit_margin, return_on_assets = calculate_profitability_ratios()
     debt_to_equity, interest_cover = calculate_solvency_ratios()
-    print(
-        f"\n{Fore.BLUE}Step 5. Update Google sheets with "
+    print_with_delay(
+        "\nStep 5. Update Google sheets with "
         "calculated ratios numbers:")
     update_ratios_googlews(current_ratio, quick_ratio, net_profit_margin,
                            return_on_assets, debt_to_equity, interest_cover)
