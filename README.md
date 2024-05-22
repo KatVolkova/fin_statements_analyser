@@ -42,3 +42,14 @@ The main goals of this project are to:
 - Automate the calculation of financial ratios.
 - Provide a comprehensive financial report.
 - Compare financial performance against industry benchmarks and historical data.
+
+### User goals:
+
+- Update financial statements quickly and accurately.
+- Automatically calculate and analyse financial ratios.
+- Compare current financial performance with historical data and industry benchmarks.
+
+### Site owner goals
+
+- Provide an easy-to-use tool for financial analysis.
+- Ensure data accuracy and reliability.
