@@ -145,10 +145,10 @@ def update_profit_and_loss():
     """
 
     accounts_to_update = {
-        'Sales Revenue': ('B5', 50_000, 200_000),
-        'Purchased Inventory': ('B9', 10_000, 100_000),
-        'Rent': ('B18', 5_000, 10_000),
-        'Interest Expense': ('B25', 1_000, 5_000)
+        'Sales Revenue': ('B5', 80_000, 200_000),
+        'Purchased Inventory': ('B9', 10_000, 80_000),
+        'Rent': ('B18', 5_000, 8_000),
+        'Interest Expense': ('B25', 5_000, 10_000)
     }
 
     for account_name, (cell, min_value, max_value) in \
@@ -174,8 +174,8 @@ def update_balance_sheet():
     in Google sheets balance_sheet tab
     """
     accounts_to_update = {
-        'Cash and Cash Equivalents': ('B8', 5_000, 50_000),
-        'Short-Term Loans': ('B20', 1_000, 10_000)
+        'Cash and Cash Equivalents': ('B8', 20_000, 50_000),
+        'Short-Term Loans': ('B20', 1_000, 5_000)
     }
 
     for account_name, (cell, min_value, max_value) in \
@@ -839,6 +839,8 @@ def main():
             print("\n-------------------------------")
             print(f"\n{Fore.BLUE}Trend Analysis Results:")
             print("\n-------------------------------")
+            historical_data = get_historical_data()
+            calculate_trend_analysis(historical_data)
         elif user_choice == 'IV':
             print(f"\n{Fore.BLUE}Financial Ratios Results:")
             analyse_ratios(current_ratio, quick_ratio, net_profit_margin,
@@ -858,6 +860,8 @@ def main():
             print("\n-------------------------------")
             print(f"\n{Fore.BLUE}Trend Analysis Results:")
             print("\n-------------------------------")
+            historical_data = get_historical_data()
+            calculate_trend_analysis(historical_data)
             print(f"\n{Fore.BLUE}Summary:")
             print_with_delay(
                 "\n\tThe financial report generated for ABC company reviews "
