@@ -726,8 +726,9 @@ def calculate_trend_analysis(historical_data):
                           previous_value) * 100
             else:
                 change = float('inf')
-            trend_analysis[ratio][f'{
-                previous_quarter}-{current_quarter}'] = change
+            trend_analysis[ratio][
+                f"{previous_quarter}-"
+                f"{current_quarter}"] = change
 
     # Trend analysis results with commentary
     print(
