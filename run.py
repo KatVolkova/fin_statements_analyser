@@ -740,7 +740,7 @@ def calculate_trend_analysis(historical_data):
             if change == float('inf'):
                 comment = (
                     "(Significant increase due "
-                "to previous value being zero)")
+                    "to previous value being zero)")
             elif change > 0:
                 if change > 10:
                     comment = " (Significant positive trend)"
@@ -760,7 +760,7 @@ def calculate_trend_analysis(historical_data):
 
 def main():
     """
-    Main function to generate and analyze the financial report 
+    Main function to generate and analyze the financial report
     for ABC company.
     """
     print(f"\n{Fore.BLUE}Financial report for the ABC company operating "
