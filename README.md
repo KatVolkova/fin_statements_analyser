@@ -7,8 +7,7 @@ Visit the deployed site: [Financial Statements Analysis Tool](https://fin-statem
 This tool updates and analyses the financial performance of a small company. It uses Google Sheets and Python to manage data extracted from financial statements, calculates financial ratios, and carries out benchmark and trend analyses.
 ## Table of Contents
 
-- [Introduction](#introduction)
-- [Project](#project)
+- [Project Description](#project-description)
   - [User goals](#user-goals)
   - [Site owner goals](#site-owner-goals)
 - [Pre-development](#pre-development)
@@ -32,3 +31,14 @@ This tool updates and analyses the financial performance of a small company. It 
 - [Heroku](#heroku)
 - [Bugs](#bugs)
 - [Credits](#credits)
+
+## Project Description
+
+This tool updates and analyses the financial performance of a small company. It manages financial data, calculates various financial ratios, and carries out benchmark and trend analyses. The data is stored in Google Sheets and Python is used to update and analyse it.
+
+The main goals of this project are to:
+
+- Reduce the time spent updating financial statements manually.
+- Automate the calculation of financial ratios.
+- Provide a comprehensive financial report.
+- Compare financial performance against industry benchmarks and historical data.
