@@ -712,6 +712,10 @@ def calculate_trend_analysis(historical_data):
     and print the results.
     """
     trend_analysis = {}
+    significant_changes = {
+        'significant_positive': [],
+        'significant_negative': []
+    }
 
     for ratio, data in historical_data.items():
         trend_analysis[ratio] = {}
@@ -743,20 +747,38 @@ def calculate_trend_analysis(historical_data):
                 comment = (
                     "(Significant increase due "
                     "to previous value being zero)")
+                significant_changes['significant_positive'].append(
+                    f"{ratio} ({period}): {change:.2f}% {comment}")
             elif change > 0:
                 if change > 10:
                     comment = " (Significant positive trend)"
+                    significant_changes['significant_positive'].append(
+                        f"{ratio} ({period}): {change:.2f}% {comment}")
                 else:
                     comment = " (Positive trend)"
             elif change < 0:
                 if change < -10:
                     comment = " (Significant negative trend)"
+                    significant_changes['significant_negative'].append(
+                        f"{ratio} ({period}): {change:.2f}% {comment}")
                 else:
                     comment = " (Negative trend)"
             else:
                 comment = " (No change)"
             print_with_delay(f"\t{period}: {change:.2f}%{comment}")
-
+    # Display warnings for significant changes
+    if (
+        significant_changes['significant_positive'] or
+            significant_changes['significant_negative']):
+        print(f"\n{Fore.RED}Warnings:")
+        if significant_changes['significant_positive']:
+            print_with_delay("\n\tSignificant Positive Trends:")
+            for positive in significant_changes['significant_positive']:
+                print_with_delay(f"\t- {positive}")
+        if significant_changes['significant_negative']:
+            print_with_delay("\n\tSignificant Negative Trends:")
+            for negative in significant_changes['significant_negative']:
+                print_with_delay(f"\t- {negative}")
     return trend_analysis
 
 
