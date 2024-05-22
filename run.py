@@ -41,29 +41,58 @@ def print_with_delay(text, delay=0.05):
 def display_instructions():
     """Show instructions for the user to follow"""
     print(f"\n{Fore.BLUE}Welcome to the Financial Analysis Tool!")
-    print_with_delay("\nPlease follow the steps below to update and generate financial report:")
+    print_with_delay(
+        "\nPlease follow the steps below to update and generate the "
+        "financial report:"
+    )
     time.sleep(1)
-    print(f"\n{Fore.BLUE}1. Update the Profit and Loss account numbers:")
-    print_with_delay("   - You will be prompted to enter values for Sales Revenue, Purchased Inventory, Rent Expense, and Interest Expenses.")
-    print_with_delay("   - Ensure the values you enter are within the specified ranges.")
+    print(
+        f"\n{Fore.BLUE}1. Update the Profit and Loss account "
+        "numbers:"
+    )
+    print_with_delay(
+        "   - You will be prompted to enter values for Sales "
+        "Revenue, Purchased Inventory, Rent Expense, and Interest Expenses."
+    )
+    print_with_delay(
+        "   - Ensure the values you enter are within the "
+        "specified ranges."
+    )
     time.sleep(1)
     print(f"\n{Fore.BLUE}2. Update the Balance Sheet numbers:")
-    print_with_delay("   - You will be prompted to enter values for Cash and Cash Equivalents, and Short-Term Loans.")
-    print_with_delay("   - Ensure the values you enter are within the specified ranges.")
+    print_with_delay(
+        "   - You will be prompted to enter values for Cash and "
+        "Cash Equivalents, and Short-Term Loans."
+    )
+    print_with_delay(
+        "   - Ensure the values you enter are within the specified ranges."
+    )
     time.sleep(1)
     print(f"\n{Fore.BLUE}3. Generate Financial Statements:")
-    print_with_delay("   - Confirm whether you would like to generate the updated Profit and Loss account and Balance Sheet.")
+    print_with_delay(
+        "   - Confirm whether you would like to generate the updated "
+        "Profit and Loss account and Balance Sheet."
+    )
     time.sleep(1)
     print(f"\n{Fore.BLUE}4. Calculate Financial Ratios:")
-    print_with_delay("   - Based on the updated data the tool will calculate liquidity, profitability, and solvency ratios.")
+    print_with_delay(
+        "   - Based on the updated data the tool will calculate liquidity, "
+        "profitability, and solvency ratios."
+    )
     time.sleep(1)
     print(f"\n{Fore.BLUE}5. Analyse and Compare Ratios:")
-    print_with_delay("   - You will be prompted to choose to analyse financial ratios, compare with industry benchmarks, perform trend analysis, or generate a complete financial report.")
+    print_with_delay(
+        "   - You will be prompted to choose to analyse financial ratios, "
+        "compare with industry benchmarks, perform trend analysis, or "
+        "generate a complete financial report."
+    )
     time.sleep(1)
-    print(f"\n{Fore.BLUE}6. Follow the prompts and enter values/option points as requested.")
+    print(
+        f"\n{Fore.BLUE}6. Follow the prompts and enter values/option "
+        "points as requested."
+    )
     time.sleep(1)
     print(f"\n{Fore.BLUE}7. To exit at any point, simply type 'exit'.")
-    
 
 # Financial statements update
 
@@ -115,7 +144,10 @@ def update_profit_and_loss():
 
 
 def update_balance_sheet():
-    """Update the Balance Sheet numbers for particular lines in Google sheets balance_sheet tab"""  
+    """
+    Update the Balance Sheet numbers for particular lines 
+    in Google sheets balance_sheet tab
+    """  
     accounts_to_update = {
         'Cash and Cash Equivalents': ('B8', 5_000, 50_000),
         'Short-Term Loans': ('B20', 1_000, 10_000)
@@ -241,7 +273,10 @@ def generate_balance_sheet():
 
 
 def calculate_liquidity_ratios():
-    """Calculate liquidity ratios based on the updated financial statements: current and quick ratios"""
+    """
+    Calculate liquidity ratios based on the updated financial 
+    statements: current and quick ratios.
+    """
     # Extract values
     current_assets = get_value(balance_sheet, 'B11')
     current_liabilities = get_value(balance_sheet, 'B21')
@@ -254,16 +289,31 @@ def calculate_liquidity_ratios():
     # Liquidity ratios results:
     print("\n-------------------------------")
     print(f"\n{Fore.BLUE}Liquidity ratios:")
-    print(f"{Back.BLUE}Liquidity ratios are a class of financial metrics used to determine a debtor's ability to pay off current debt obligations without raising external capital. ")
+    print(
+        f"{Back.BLUE}Liquidity ratios are a class of financial metrics "
+        "used to determine a debtor's ability to pay off current debt "
+        "obligations without raising external capital. "
+    )
     print(f"\n\t{Fore.BLUE}Current ratio: {current_ratio:.2f} times")
-    print(f"{Back.BLUE}The current ratio measures a company's ability to pay off its current liabilities (payable within one year) with its total current assets")
+    print(
+        f"{Back.BLUE}The current ratio measures a company's ability "
+        "to pay off its current liabilities (payable within one year) "
+        "with its total current assets"
+    )
     print(f"\n\t{Fore.BLUE}Quick ratio: {quick_ratio:.2f} times")
-    print(f"{Back.BLUE}The quick ratio measures a company's ability to meet its short-term obligations with its most liquid assets and therefore excludes inventories from its current assets.")
+    print(
+        f"{Back.BLUE}The quick ratio measures a company's ability "
+        "to meet its short-term obligations with its most liquid "
+        "assets and therefore excludes inventories from its current assets."
+    )
     return current_ratio, quick_ratio
 
 
 def calculate_profitability_ratios():
-    """Calculate profitability ratios based on the updated financial statements: net profit margin and return on assets"""
+    """
+    Calculate profitability ratios based on the updated financial statements:
+    net profit margin and return on assets
+    """
     # Extract values
     net_profit = get_value(profit_and_loss_sheet, 'B27')
     sales_revenue = get_value(profit_and_loss_sheet, 'B5')
@@ -271,9 +321,15 @@ def calculate_profitability_ratios():
 
     # Calculations and validation to avoid division by zero
     if sales_revenue == 0:
-        raise ValueError("Sales Revenue should not be zero to avoid division by zero.")
+        raise ValueError(
+            "Sales Revenue should not be zero to avoid "
+            "division by zero."
+        )
     if total_assets == 0:
-        raise ValueError("Total Assets should not be zero to avoid division by zero.")
+        raise ValueError(
+            "Total Assets should not be zero to avoid "
+            "division by zero."
+        )
     net_profit_margin = (net_profit / sales_revenue) * 100
     return_on_assets = (net_profit / total_assets) * 100
 
