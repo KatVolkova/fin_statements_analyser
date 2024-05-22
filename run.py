@@ -763,14 +763,17 @@ def main():
     Main function to generate and analyze the financial report
     for ABC company.
     """
+    # Introduction
     print(f"\n{Fore.BLUE}Financial report for the ABC company operating "
           "in the retail industry as at 31 of December 20X3")
+    # Update Financial Statements
     print(f"\n{Fore.BLUE}Step 1. Update Profit and Loss account numbers:")
     update_profit_and_loss()
     print(f"\n{Fore.BLUE}The Profit and loss account has been updated")
     print(f"\n{Fore.BLUE}Step 2. Update the Balance Sheet numbers:")
     update_balance_sheet()
     print(f"\n{Fore.BLUE}The Balance sheet has been updated")
+    # Generate Financial Statements
     generate_statements = input(
         "\nWould you like to generate the Profit and Loss account and "
         "Balance Sheet? (y/n): ").strip().lower()
@@ -783,17 +786,19 @@ def main():
             "\nGenerating Profit and Loss account and "
             "Balance Sheet has been omitted.")
         time.sleep(1)
+    # Financial Ratios Calculation
     print_with_delay("\nStep 4. Calculate Financial Ratios")
     time.sleep(1)
     current_ratio, quick_ratio = calculate_liquidity_ratios()
     net_profit_margin, return_on_assets = calculate_profitability_ratios()
     debt_to_equity, interest_cover = calculate_solvency_ratios()
+    # Google Sheets Update
     print_with_delay(
         "\nStep 5. Update Google sheets with "
         "calculated ratios numbers:")
     update_ratios_googlews(current_ratio, quick_ratio, net_profit_margin,
                            return_on_assets, debt_to_equity, interest_cover)
-
+    # Options for users to choose
     while True:
         print_with_delay("\nWhat would you like to generate next:")
         time.sleep(1)
