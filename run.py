@@ -100,7 +100,10 @@ def display_instructions():
 
 
 def validate_input(message, min_value, max_value, account_name):
-    """Validate the user's input to ensure that only a number within the defined range is entered"""
+    """
+    Validate the user's input to ensure that only a number within 
+    the defined range is entered
+    """
     while True:
         try:
             value = input(message).replace(',', '')
@@ -115,8 +118,17 @@ def validate_input(message, min_value, max_value, account_name):
             if min_value <= value <= max_value:
                 return value
             else:
-                message = f"{Fore.RED}Please enter the number for {account_name}. The number should not contain any decimal places. The number should be between {min_value:,.0f} and {max_value:,.0f}:"
-                print(f"{Fore.RED}The number should be between {min_value:,.0f} and {max_value:,.0f}. The number should not contain any decimal places. Please try again.")
+                message = (
+                    f"{Fore.RED}Please enter the number for {account_name}."
+                    f" The number should not contain any decimal places. "
+                    f" The number should be between {min_value:,.0f} and "
+                    f"{max_value:,.0f}:"
+                )
+                print(
+                    f"{Fore.RED}The number should be between {min_value:,.0f} "
+                    f"and {max_value:,.0f}. The number should not contain any "
+                    f"decimal places. Please try again."
+                )
         except ValueError as e:
             print(f"Invalid input: {e}")
 
@@ -124,7 +136,10 @@ def validate_input(message, min_value, max_value, account_name):
 
 
 def update_profit_and_loss():
-    """Update the profit and loss account numbers for particular lines in Google sheets profit_and_loss tab"""
+    """
+    Update the profit and loss account numbers for particular 
+    lines in Google sheets profit_and_loss tab
+    """
     
     accounts_to_update = {
         'Sales Revenue': ('B5', 50_000, 200_000),
@@ -133,8 +148,14 @@ def update_profit_and_loss():
         'Interest Expense': ('B25', 1_000, 5_000)
     }
     
-    for account_name, (cell, min_value, max_value) in accounts_to_update.items():
-        message = f"\nPlease enter the number for {account_name}. The number should not contain any decimal places. The number should be between {min_value:,.0f} and {max_value:,.0f}: "
+    for account_name, (cell, min_value, max_value) in \
+        accounts_to_update.items():
+
+        message = (
+            f"\nPlease enter the number for {account_name}. "
+            f"The number should not contain any decimal places. "
+            f"The number should be between {min_value:,.0f} and {max_value:,.0f}: "
+        )
         value = validate_input(message, min_value, max_value, account_name)
         profit_and_loss_sheet.update_acell(cell, value)
         print_with_delay(f"\n\t{account_name} updated successfully")
@@ -153,8 +174,14 @@ def update_balance_sheet():
         'Short-Term Loans': ('B20', 1_000, 10_000)
     }
     
-    for account_name, (cell, min_value, max_value) in accounts_to_update.items():
-        message = f"\nPlease enter the number for {account_name}. The number should not contain any decimal places. The number should be between {min_value:,.0f} and {max_value:,.0f}: "
+    for account_name, (cell, min_value, max_value) in \
+        accounts_to_update.items():
+
+        message = (
+            f"\nPlease enter the number for {account_name}. "
+            "The number should not contain any decimal places. "
+            "The number should be between {min_value:,.0f} and {max_value:,.0f}: "
+        )
         value = validate_input(message, min_value, max_value, account_name)
         balance_sheet.update_acell(cell, value)
         print_with_delay(f"\n\t{account_name} updated successfully") 
@@ -188,9 +215,14 @@ def generate_profit_and_loss():
     
     # Calculations
    
-    cost_of_goods_sold = beginning_inventory + purchased_inventory - ending_inventory
+    cost_of_goods_sold = (
+    beginning_inventory + purchased_inventory - ending_inventory
+    )
     gross_profit = sales_revenue - cost_of_goods_sold
-    total_operating_expenses = payroll + utilities + rent_expense + advertising_marketing_expenses + depreciation_expense
+    total_operating_expenses = (
+    payroll + utilities + rent_expense + 
+    advertising_marketing_expenses + depreciation_expense
+    )
     operating_income = gross_profit - total_operating_expenses
     net_income = operating_income - interest_expenses
 
@@ -208,10 +240,16 @@ def generate_profit_and_loss():
     print(f"Payroll: £{payroll:,.2f}")
     print(f"Utilities: £{utilities:,.2f}")
     print(f"Rent Expense: £{rent_expense:,.2f}")
-    print(f"Advertising and Marketing Expenses: £{advertising_marketing_expenses:,.2f}")
+    print(
+        f"Advertising and Marketing Expenses: "
+        f"£{advertising_marketing_expenses:,.2f}"
+    )
     print(f"Depreciation Expense: £{depreciation_expense:,.2f}")
     print("-------------------------------")
-    print(f"Total Operating Expenses: £{total_operating_expenses:,.2f}")
+    print(
+        f"Total Operating Expenses: "
+        f"£{total_operating_expenses:,.2f}"
+    )
     print("-------------------------------")
     print(f"Operating Income: £{operating_income:,.2f}")
     print("-------------------------------")
@@ -235,9 +273,14 @@ def generate_balance_sheet():
     retained_earnings = get_value(balance_sheet, 'B26')
 
     # Calculations
-    total_assets = property_plant_equipment + cash_and_equivalents + accounts_receivable + inventory
+    total_assets = (
+        property_plant_equipment + cash_and_equivalents + 
+        accounts_receivable + inventory
+    )
     total_liabilities = long_term_debt + accounts_payable + short_term_loans
-    total_liabilities_and_equity = total_liabilities + common_stock + retained_earnings
+    total_liabilities_and_equity = (
+        total_liabilities + common_stock + retained_earnings
+    )
     discrepancy = total_assets - total_liabilities_and_equity
     
     # Display the Balance Sheet
@@ -245,9 +288,15 @@ def generate_balance_sheet():
     time.sleep(1)
     print("-------------------------------")
     print(f"Non-Current Assets:")
-    print(f"Property, Plant and Equipment: £{property_plant_equipment:,.2f}")
+    print(
+        f"Property, Plant and Equipment: "
+        f"£{property_plant_equipment:,.2f}"
+    )
     print(f"Current Assets:")
-    print(f"Cash and Cash Equivalents: £{cash_and_equivalents:,.2f}")
+    print(
+        f"Cash and Cash Equivalents: "
+        f"£{cash_and_equivalents:,.2f}"
+    )
     print(f"Accounts Receivable: £{accounts_receivable:,.2f}")
     print(f"Inventory: £{inventory:,.2f}")
     print("-------------------------------")
@@ -265,7 +314,10 @@ def generate_balance_sheet():
     print(f"Common Stock: £{common_stock:,.2f}")
     print(f"Retained Earnings: £{retained_earnings:,.2f}")
     print("-------------------------------")
-    print(f"Total Liabilities and Equity: £{total_liabilities_and_equity:,.2f}")
+    print(
+        f"Total Liabilities and Equity: "
+        f"£{total_liabilities_and_equity:,.2f}"
+    )
     print("-------------------------------")
     print(f"Discrepancy to Investigate: £{discrepancy:,.2f}")
 
@@ -282,9 +334,15 @@ def calculate_liquidity_ratios():
     current_liabilities = get_value(balance_sheet, 'B21')
     # Calculations and validation to avoid division by zero
     if current_liabilities == 0:
-        raise ValueError("Current Liabilities should not be zero to avoid division by zero.")
+        raise ValueError(
+            "Current Liabilities should not be zero "
+            "to avoid division by zero."
+        )
     current_ratio = current_assets / current_liabilities
-    quick_ratio = (current_assets - get_value(balance_sheet, 'B10')) / current_liabilities
+    quick_ratio = (
+    current_assets - get_value(balance_sheet, 'B10')
+    ) / current_liabilities
+
 
     # Liquidity ratios results:
     print("\n-------------------------------")
@@ -311,7 +369,8 @@ def calculate_liquidity_ratios():
 
 def calculate_profitability_ratios():
     """
-    Calculate profitability ratios based on the updated financial statements:
+    Calculate profitability ratios based on the updated 
+    financial statements:
     net profit margin and return on assets
     """
     # Extract values
@@ -336,9 +395,17 @@ def calculate_profitability_ratios():
     # Profitability ratios results:
     print("\n-------------------------------")
     print(f"\n{Fore.BLUE}Profitability ratios:")
-    print(f"{Back.BLUE}Profitability ratios are a class of financial metrics that are used to assess a business's ability to generate earnings relative to its revenue, operating costs, balance sheet assets or equity")
+    print(
+        f"{Back.BLUE}Profitability ratios are a class of financial "
+        f"metrics that are used to assess a business's ability "
+        f"to generate earnings relative to its revenue, "
+        f"operating costs, balance sheet assets or equity"
+        )
     print(f"\n\t{Fore.BLUE}\n\tNet Profit Margin: {net_profit_margin:.2f}%")
-    print(f"{Back.BLUE}Net margin reflects a company's ability to generate earnings after all expenses and taxes are accounted for. It's obtained by dividing net income into total revenue. ")
+    print(
+        f"{Back.BLUE}Net margin reflects a company's ability "
+        f"to generate earnings after all expenses and taxes are accounted for. "
+        )
     print(f"\n\t{Fore.BLUE}Return on Assets: {return_on_assets:.2f}%")
     print(f"{Back.BLUE}Profitability is assessed relative to costs and expenses. It's analyzed in comparison to assets to see how effective a company is at deploying assets to generate sales and profits. ")
     return net_profit_margin, return_on_assets
