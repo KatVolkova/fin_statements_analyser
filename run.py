@@ -1,7 +1,7 @@
 import gspread
 from google.oauth2.service_account import Credentials
-from colorama import init, Fore, Style
 import time
+from colorama import init, Fore, Back, Style
 
 init(autoreset=True)
 
@@ -40,29 +40,29 @@ def print_with_delay(text, delay=0.05):
 
 def display_instructions():
     """Show instructions for the user to be followed"""
-    print_with_delay(f"{Fore.RED}\nWelcome to the Financial Analysis Tool!")
+    print(f"\n{Fore.BLUE}Welcome to the Financial Analysis Tool!")
     print_with_delay("\nPlease follow the steps below to update and generate financial report:")
     time.sleep(1)
-    print_with_delay("\n1. Update the Profit and Loss account numbers:")
+    print(f"\n{Fore.BLUE}1. Update the Profit and Loss account numbers:")
     print_with_delay("   - You will be prompted to enter values for Sales Revenue, Purchased Inventory, Rent Expense, and Interest Expenses.")
     print_with_delay("   - Ensure the values you enter are within the specified ranges.")
     time.sleep(1)
-    print_with_delay("\n2. Update the Balance Sheet numbers:")
+    print(f"\n{Fore.BLUE}2. Update the Balance Sheet numbers:")
     print_with_delay("   - You will be prompted to enter values for Cash and Cash Equivalents, and Short-Term Loans.")
     print_with_delay("   - Ensure the values you enter are within the specified ranges.")
     time.sleep(1)
-    print_with_delay("\n3. Generate Financial Statements:")
+    print(f"\n{Fore.BLUE}3. Generate Financial Statements:")
     print_with_delay("   - Confirm whether you would like to generate the updated Profit and Loss account and Balance Sheet.")
     time.sleep(1)
-    print_with_delay("\n4. Calculate Financial Ratios:")
+    print(f"\n{Fore.BLUE}4. Calculate Financial Ratios:")
     print_with_delay("   - Based on the updated data the tool will calculate liquidity, profitability, and solvency ratios.")
     time.sleep(1)
-    print_with_delay("\n5. Analyse and Compare Ratios:")
+    print(f"\n{Fore.BLUE}5. Analyse and Compare Ratios:")
     print_with_delay("   - You will be prompted to choose to analyse financial ratios, compare with industry benchmarks, perform trend analysis, or generate a complete financial report.")
     time.sleep(1)
-    print_with_delay("\n6. Follow the prompts and enter values/option points as requested.")
+    print(f"\n{Fore.BLUE}6. Follow the prompts and enter values/option points as requested.")
     time.sleep(1)
-    print_with_delay("\n7. To exit at any point, simply type 'exit'.")
+    print(f"\n{Fore.BLUE}7. To exit at any point, simply type 'exit'.")
     
 
 # Financial statements update
@@ -79,15 +79,15 @@ def validate_input(message, min_value, max_value, account_name):
                 print("Exiting the program.")
                 exit()
             if not value.isdigit():
-                raise ValueError("Input must contain only digits.")
+                raise ValueError(f"{Fore.RED}Input must contain only digits.")
             if value.startswith('0') and value != '0':
-                raise ValueError("Leading zeros are not allowed.")
+                raise ValueError(f"{Fore.RED}Leading zeros are not allowed.")
             value = float(value)
             if min_value <= value <= max_value:
                 return value
             else:
-                message = f"Please enter the number for {account_name}. The number should not contain any decimal places. The number should be between {min_value:,.0f} and {max_value:,.0f}:"
-                print(f"The number should be between {min_value:,.0f} and {max_value:,.0f}. The number should not contain any decimal places. Please try again.")
+                message = f"{Fore.RED}Please enter the number for {account_name}. The number should not contain any decimal places. The number should be between {min_value:,.0f} and {max_value:,.0f}:"
+                print(f"{Fore.RED}The number should be between {min_value:,.0f} and {max_value:,.0f}. The number should not contain any decimal places. Please try again.")
         except ValueError as e:
             print(f"Invalid input: {e}")
 
@@ -164,7 +164,7 @@ def generate_profit_and_loss():
 
     # Display profit and loss account
     
-    print_with_delay("\nProfit and Loss Account:")
+    print(f"\n{Fore.BLUE}Profit and Loss Account:")
     time.sleep(1)
     print("-------------------------------")
     print(f"Sales Revenue: £{sales_revenue:,.2f}")
@@ -209,7 +209,7 @@ def generate_balance_sheet():
     discrepancy = total_assets - total_liabilities_and_equity
     
     # Display the Balance Sheet
-    print_with_delay("\nBalance Sheet:")
+    print(f"\n{Fore.BLUE}Balance Sheet:")
     time.sleep(1)
     print("-------------------------------")
     print(f"Non-Current Assets:")
@@ -253,14 +253,12 @@ def calculate_liquidity_ratios():
 
     # Liquidity ratios results:
     print("\n-------------------------------")
-    print_with_delay("Liquidity ratios:")
-    time.sleep(1)
-    print_with_delay("\nLiquidity ratios are a class of financial metrics used to determine a debtor's ability to pay off current debt obligations without raising external capital. ")
-    print_with_delay(f"\n\tCurrent ratio: {current_ratio:.2f} times")
-    print_with_delay("The current ratio measures a company's ability to pay off its current liabilities (payable within one year) with its total current assets")
-    time.sleep(1)
-    print_with_delay(f"\n\tQuick ratio: {quick_ratio:.2f} times")
-    print_with_delay("The quick ratio measures a company's ability to meet its short-term obligations with its most liquid assets and therefore excludes inventories from its current assets.")
+    print(f"\n{Fore.BLUE}Liquidity ratios:")
+    print(f"{Back.BLUE}Liquidity ratios are a class of financial metrics used to determine a debtor's ability to pay off current debt obligations without raising external capital. ")
+    print(f"\n\t{Fore.BLUE}Current ratio: {current_ratio:.2f} times")
+    print(f"{Back.BLUE}The current ratio measures a company's ability to pay off its current liabilities (payable within one year) with its total current assets")
+    print(f"\n\t{Fore.BLUE}Quick ratio: {quick_ratio:.2f} times")
+    print(f"{Back.BLUE}The quick ratio measures a company's ability to meet its short-term obligations with its most liquid assets and therefore excludes inventories from its current assets.")
     return current_ratio, quick_ratio
 
 
@@ -281,14 +279,12 @@ def calculate_profitability_ratios():
 
     # Profitability ratios results:
     print("\n-------------------------------")
-    print_with_delay("Profitability ratios:")
-    time.sleep(1)
-    print_with_delay("Profitability ratios are a class of financial metrics that are used to assess a business's ability to generate earnings relative to its revenue,operating costs, balance sheet assets or equity")
-    print_with_delay(f"\n\tNet Profit Margin: {net_profit_margin:.2f}%")
-    print_with_delay("Net margin, reflects a company's ability to generate earnings after all expenses and taxes are accounted for. It's obtained by dividing net income into total revenue. ")
-    time.sleep(1)
-    print_with_delay(f"\n\tReturn on Assets: {return_on_assets:.2f}%")
-    print_with_delay("Profitability is assessed relative to costs and expenses. It's analyzed in comparison to assets to see how effective a company is at deploying assets to generate sales and profits. ")
+    print(f"\n{Fore.BLUE}Profitability ratios:")
+    print(f"{Back.BLUE}Profitability ratios are a class of financial metrics that are used to assess a business's ability to generate earnings relative to its revenue,operating costs, balance sheet assets or equity")
+    print(f"\n\t{Fore.BLUE}\n\tNet Profit Margin: {net_profit_margin:.2f}%")
+    print(f"{Back.BLUE}Net margin, reflects a company's ability to generate earnings after all expenses and taxes are accounted for. It's obtained by dividing net income into total revenue. ")
+    print(f"\n\t{Fore.BLUE}Return on Assets: {return_on_assets:.2f}%")
+    print(f"{Back.BLUE}Profitability is assessed relative to costs and expenses. It's analyzed in comparison to assets to see how effective a company is at deploying assets to generate sales and profits. ")
     return net_profit_margin, return_on_assets
     
 
@@ -309,14 +305,12 @@ def calculate_solvency_ratios():
 
     # Solvency ratios results:
     print("\n-------------------------------")
-    print_with_delay("Solvency ratios:")
-    time.sleep(1)
-    print_with_delay("A solvency ratio is a key metric used to measure an enterprise’s ability to meet its long-term debt obligations.")
-    print_with_delay(f"\n\tDebt-to-Equity ratio: {debt_to_equity:.2f}%")
-    print_with_delay("The debt-to-equity ratio indicates how a company is funded, in this case, by debt. The higher the ratio, the more debt a company has on its books, meaning the likelihood of default is higher.")
-    time.sleep(1)
-    print_with_delay(f"\n\tInterest cover ratio: {interest_cover:.2f} times")
-    print_with_delay("The interest cover ratio is used to measure how well a firm can pay the interest due on outstanding debt")
+    print(f"\n{Fore.BLUE}Solvency ratios:")
+    print(f"{Back.BLUE}A solvency ratio is a key metric used to measure an enterprise’s ability to meet its long-term debt obligations.")
+    print(f"\n\t{Fore.BLUE}Debt-to-Equity ratio: {debt_to_equity:.2f}%")
+    print(f"{Back.BLUE}The debt-to-equity ratio indicates how a company is funded, in this case, by debt. The higher the ratio, the more debt a company has on its books, meaning the likelihood of default is higher.")
+    print(f"\n\t{Fore.BLUE}Interest cover ratio: {interest_cover:.2f} times")
+    print(f"{Back.BLUE}The interest cover ratio is used to measure how well a firm can pay the interest due on outstanding debt")
     print("\n-------------------------------")
     return debt_to_equity, interest_cover
    
@@ -344,7 +338,7 @@ def update_ratios_googlews(current_ratio, quick_ratio, net_profit_margin, return
 def analyse_ratios(current_ratio, quick_ratio, net_profit_margin, return_on_assets, debt_to_equity, interest_cover):
     """Analyse financial ratios and provide comments"""
     print("\n-------------------------------")
-    print_with_delay("\nLiquidity Ratios Analysis:")
+    print(f"\n{Fore.BLUE}Liquidity Ratios Analysis:")
     time.sleep(1)
     if current_ratio >= 1.5:
         print_with_delay("\n\tCurrent ratio indicates good liquidity.")
@@ -358,8 +352,7 @@ def analyse_ratios(current_ratio, quick_ratio, net_profit_margin, return_on_asse
     else:
         print_with_delay("\n\tQuick ratio suggests potential difficulties in meeting short-term obligations.")
     ("\n-------------------------------")
-    print_with_delay("\nProfitability Ratios Analysis:")
-    time.sleep(1)
+    print(f"\n{Fore.BLUE}Profitability Ratios Analysis:")
     if net_profit_margin > 10:
         print_with_delay("\n\tNet profit margin indicates healthy profitability.")
     elif 5 <= net_profit_margin <= 10:
@@ -374,8 +367,7 @@ def analyse_ratios(current_ratio, quick_ratio, net_profit_margin, return_on_asse
     else:
         print_with_delay("\n\tReturn on assets suggests inefficiency in asset utilization, and optimization may be required.")
     ("\n-------------------------------")
-    print_with_delay("\nSolvency Ratios Analysis:")
-    time.sleep(1)
+    print(f"\n{Fore.BLUE}Solvency Ratios Analysis:")
     if debt_to_equity < 50:
         print_with_delay("\n\tDebt-to-equity ratio indicates low financial risk.")
     elif 50 <= debt_to_equity <= 60:
@@ -403,7 +395,7 @@ def analyse_ratios(current_ratio, quick_ratio, net_profit_margin, return_on_asse
         negative_ratios.append("interest cover ratio")
     
     if negative_ratios:
-        print_with_delay("\n\tWarning: The following ratios are negative, indicating severe financial distress. Immediate investigation required:")
+        print(f"\n\t{Fore.RED}Warning: The following ratios are negative, indicating severe financial distress. Immediate investigation required:")
         for ratio in negative_ratios:
             print_with_delay(f"\t- {ratio}")
 
@@ -439,8 +431,7 @@ def compare_with_benchmarks(benchmarks, current_ratio, quick_ratio, net_profit_m
         'Interest Cover': interest_cover
     }
 
-    print_with_delay("Benchmarking is the practice of comparing performance metrics to industry bests and best practices from other companies")
-    time.sleep(1)
+    print(f"{Back.BLUE}Benchmarking is the practice of comparing performance metrics to industry bests and best practices from other companies")
     for ratio, value in ratios.items():
         benchmark_value = benchmarks[ratio.lower().replace(' ', '_')]
         unit = 'times' if ratio in ['Current Ratio', 'Quick Ratio', 'Interest Cover'] else '%'
@@ -504,7 +495,7 @@ def calculate_trend_analysis(historical_data):
             trend_analysis[ratio][f'{previous_quarter}-{current_quarter}'] = change
 
     # Trend analysis results with commentary
-    print("Trend analysis is defined as a statistical and analytical technique used to evaluate and identify patterns, trends, or changes in data over time.")
+    print(f"{Back.BLUE}Trend analysis is defined as a statistical and analytical technique used to evaluate and identify patterns, trends, or changes in data over time.")
     for ratio, changes in trend_analysis.items():
         print_with_delay(f"\n{ratio}:")
         for period, change in changes.items():
@@ -529,34 +520,26 @@ def calculate_trend_analysis(historical_data):
 
 
 def main():
-    print_with_delay("\nFinancial report for the ABC company operating in the retail industry as at 31 of December 20X3")
-    time.sleep(1)
-    print_with_delay("\nStep 1. Update Profit and Loss account numbers:")
-    time.sleep(1)
+    print(f"\n{Fore.BLUE}Financial report for the ABC company operating in the retail industry as at 31 of December 20X3")
+    print(f"\n{Fore.BLUE}Step 1. Update Profit and Loss account numbers:")
     update_profit_and_loss()
-    print_with_delay("\nThe Profit and loss account has been updated")
-    time.sleep(1)
-    print_with_delay("\nStep 2. Update the Balance Sheet numbers:")
-    time.sleep(1)
+    print(f"\n{Fore.BLUE}The Profit and loss account has been updated")
+    print(f"\n{Fore.BLUE}Step 2. Update the Balance Sheet numbers:")
     update_balance_sheet()
-    print_with_delay("\nThe Balance sheet has been updated")
-    time.sleep(1)
+    print(f"\n{Fore.BLUE}The Balance sheet has been updated")
     generate_statements = input("\nWould you like to generate the Profit and Loss account and Balance Sheet? (y/n): ").strip().lower()
     if generate_statements == 'y':
-        print_with_delay("\nStep 3. Generate Financial Statements")
-        time.sleep(1)
+        print(f"\n{Fore.BLUE}Step 3. Generate Financial Statements")
         generate_profit_and_loss()
         generate_balance_sheet()
     else:
         print_with_delay("\nGenerating Profit and Loss account and Balance Sheet has been omitted.")
         time.sleep(1)
-    print_with_delay("\nStep 4. Calculate Financial Ratios")
-    time.sleep(1)
+    print(f"\n{Fore.BLUE}Step 4. Calculate Financial Ratios")
     current_ratio, quick_ratio = calculate_liquidity_ratios()
     net_profit_margin, return_on_assets = calculate_profitability_ratios()
     debt_to_equity, interest_cover = calculate_solvency_ratios()
-    print_with_delay("\nStep 5. Update Google sheets with calculated ratios numbers:")
-    time.sleep(1)
+    print(f"\n{Fore.BLUE}Step 5. Update Google sheets with calculated ratios numbers:")
     update_ratios_googlews(current_ratio, quick_ratio, net_profit_margin, return_on_assets, debt_to_equity, interest_cover)
     
     while True:
@@ -575,41 +558,35 @@ def main():
         user_choice = input("\nEnter your choice (I, II, III, IV, V): ").strip().upper()
         print("\n-------------------------------")
         if user_choice == 'I':
-            print_with_delay("\nFinancial Ratios Results:")
+            print(f"\n{Fore.BLUE}Financial Ratios Results:")
             time.sleep(1)
             analyse_ratios(current_ratio, quick_ratio, net_profit_margin, return_on_assets, debt_to_equity, interest_cover)
         elif user_choice == 'II':
             print("\n-------------------------------")
-            print_with_delay("\nBenchmark Comparison Analysis:")
-            time.sleep(1)
+            print(f"\n{Fore.BLUE}Benchmark Comparison Analysis:")
             print("\n-------------------------------")
             benchmarks = get_benchmarks()
             compare_with_benchmarks(benchmarks, current_ratio, quick_ratio, net_profit_margin, return_on_assets, debt_to_equity, interest_cover)
         elif user_choice == 'III':
             print("\n-------------------------------")
-            print_with_delay("\nTrend Analysis Results:")
-            time.sleep(1)
+            print(f"\n{Fore.BLUE}Trend Analysis Results:")
             print("\n-------------------------------")
             historical_data = get_historical_data()
             trend_analysis = calculate_trend_analysis(historical_data)
         elif user_choice == 'IV':
-            print_with_delay("\nFinancial Ratios Results:")
-            time.sleep(1)
+            print(f"\n{Fore.BLUE}Financial Ratios Results:")
             analyse_ratios(current_ratio, quick_ratio, net_profit_margin, return_on_assets, debt_to_equity, interest_cover)
             print("\n-------------------------------")
-            print_with_delay("\nBenchmark Comparison Analysis:")
-            time.sleep(1)
+            print(f"\n{Fore.BLUE}Benchmark Comparison Analysis:")
             print("\n-------------------------------")
             benchmarks = get_benchmarks()
             compare_with_benchmarks(benchmarks, current_ratio, quick_ratio, net_profit_margin, return_on_assets, debt_to_equity, interest_cover)
             print("\n-------------------------------")
-            print_with_delay("\nTrend Analysis Results:")
-            time.sleep(1)
+            print(f"\n{Fore.BLUE}Trend Analysis Results:")
             print("\n-------------------------------")
             historical_data = get_historical_data()
             trend_analysis = calculate_trend_analysis(historical_data)
-            print_with_delay("\nSummary:")
-            time.sleep(1)
+            print(f"\n{Fore.BLUE}Summary:")
             print_with_delay("\n\tThe financial report generated for ABC company reviews its overall financial health and performance.")
             print_with_delay("\tKey points include updated profit and loss figures, balance sheet numbers, and a comprehensive analysis of financial ratios.")
             print_with_delay("\tBenchmark comparison helps to understand the company's standing relative to industry standards.")
@@ -619,7 +596,7 @@ def main():
             print_with_delay("\nExiting the program.")
             break
         else:
-            print_with_delay("\nInvalid choice. Please select a valid option.")
+            print(f"\n{Fore.RED}Invalid choice. Please select a valid option.")
 
 
 if __name__ == "__main__":
