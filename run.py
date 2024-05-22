@@ -157,8 +157,8 @@ def update_profit_and_loss():
         message = (
             f"\nPlease enter the number for {account_name}. "
             f"The number should not contain any decimal places. "
-            f"The number should be between {
-                min_value: , .0f} and max_value: {max_value: , .0f}"
+            f"The number should be between {min_value:,.0f} "
+            f"and {max_value:,.0f}: "
         )
         value = validate_input(message, min_value, max_value, account_name)
         profit_and_loss_sheet.update_acell(cell, value)
@@ -184,7 +184,7 @@ def update_balance_sheet():
         message = (
             f"\nPlease enter the number for {account_name}. "
             "The number should not contain any decimal places. "
-            "The number should be between {min_value:,.0f} "
+            f"The number should be between {min_value:,.0f} "
             f"and {max_value:,.0f}: "
         )
         value = validate_input(message, min_value, max_value, account_name)
