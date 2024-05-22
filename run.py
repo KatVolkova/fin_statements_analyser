@@ -634,8 +634,9 @@ def compare_with_benchmarks(
         unit = 'times' if ratio in ['Current Ratio',
                                     'Quick Ratio', 'Interest Cover'] else '%'
 
-        print_with_delay(f"\n\t{ratio}: {value: .2f} {
-                         unit}(Benchmark: {benchmark_value: .2f} {unit})")
+        print_with_delay(f"\n\t{ratio}: {value:.2f} {unit} "
+                         f"(Benchmark: {benchmark_value:.2f} {unit})")
+
         if ratio == 'Debt to Equity':
             if value < benchmark_value:
                 print_with_delay(
@@ -776,7 +777,7 @@ def main():
     # Generate Financial Statements
     generate_statements = input(
         "\nWould you like to generate the Profit and Loss account and "
-        "Balance Sheet? (y/n): ").strip().lower()
+        "Balance Sheet? (y/n): \n").strip().lower()
     if generate_statements == 'y':
         print(f"\n{Fore.BLUE}Step 3. Generate Financial Statements")
         generate_profit_and_loss()
@@ -814,7 +815,7 @@ def main():
         print_with_delay("V. Exit")
         time.sleep(1)
         user_choice = input(
-            "\nEnter your choice (I, II, III, IV, V): ").strip().upper()
+            "\nEnter your choice (I, II, III, IV, V):\n ").strip().upper()
         print("\n-------------------------------")
         if user_choice == 'I':
             print(f"\n{Fore.BLUE}Financial Ratios Results:")
