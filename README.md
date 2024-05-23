@@ -143,3 +143,10 @@ The summary provides a short explanation of what is included in the financial re
 - [gspread](https://github.com/burnash/gspread) - A Python library to interact with Google Sheets.
 - [time](https://docs.python.org/3/library/time.html) -To apply an incremental time effect to the output.
 - [Google OAuth2](https://google-auth.readthedocs.io/en/latest/) - For authentication.
+
+
+## Validation
+
+PEP8 - Python style guide checker was used. All code was validated, and adjustments were made where necessary.
+
+![PEP8](assets/pep8-python-linter.png)
