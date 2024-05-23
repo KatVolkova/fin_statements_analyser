@@ -10,7 +10,7 @@ This tool updates and analyses the financial performance of a small company. It 
 - [Project Description](#project-description)
   - [User goals](#user-goals)
   - [Site owner goals](#site-owner-goals)
-- [Pre-development](#pre-development)
+  - [Pre-development](#pre-development)
 - [Features](#features)
   - [Update Profit and Loss Account](#update-profit-and-loss-account)
   - [Update Balance Sheet](#update-balance-sheet)
@@ -65,6 +65,14 @@ The main goals of this project are to:
 
 - Provide an easy-to-use tool for financial analysis.
 - Ensure data accuracy and reliability.
+
+
+### Pre-development
+
+Notes and flow charts that were created to plan the project:
+
+![Notes](assets/notes.png)
+![Flow Chart](assets/flow-chart.png)
 
 
 ## Features
