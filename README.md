@@ -175,10 +175,29 @@ The following tests were run to ensure the tool is working correctly:
 | Program runs until user chooses to exit | User decides when to finish the program | User is asked to make a choice until option V. is selected  | Works as expected |
 
 
+### Input Validation Testing
+
+| **Feature**   | **Action**                    | **Expected Result**          | **Actual Result** |
+| ------------- | ----------------------------- | ---------------------------- | ----------------- |
+| Financial Statements input validation | User enters a non-numeric character | "Input must contain only digits" message is displayed | Works as expected |
+| Financial Statements input validation | User enters a number outside the specified range | User is prompted to re-enter the number within the specified range | Works as expected |
+| Financial Statements input validation | User enters a number with decimal places | User is prompted to re-enter the number within the specified range and without decimal places | Works as expected |
+| Financial Statements input validation | User enters a number with leading zero/zeros | "Leading zeros are not allowed" message is displayed | Works as expected |
+| Financial Statements input validation | User types "exit" | "Exiting the program" message is displayed, the program stops working | Works as expected |
+| Options what to do next | If user types anything but the options presented, they will be prompted to select a valid option| "Invalid choice. Please select a valid option" message is displayed | Works as expected |
 
 
 
 
+### Other Testing
+
+
+| **Feature**   | **Action**                    | **Expected Result**          | **Actual Result** |
+| ------------- | ----------------------------- | ---------------------------- | ----------------- |
+| Generate financial statements | Formulas are applied in both Google Sheets and Python program to calculate totals for both statements | Both the program and Google sheets show the same results for the financial statements | Works as expected |
+| Calculate financial ratios | If the denominator of the ratio is zero value error is raised | "Name of the ratio - should not be zero" message is displayed| Works as expected |
+| Calculate financial ratios | Negative ratios are grouped and presented with a warning | "Warning: the following ratios are negative, immediate investigation is required" message is displayed followed by the list of ratios | Works as expected |
+| Trend Analysis | Significant positive/negative results are brought to the user's attention| "Significant positive/negative trends" warning message is displayed, followed by the list of these trends | Works as expected |
 
 ## Validation
 
