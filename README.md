@@ -11,7 +11,6 @@ This tool updates and analyses the financial performance of a small company. It 
   - [User goals](#user-goals)
   - [Site owner goals](#site-owner-goals)
 - [Pre-development](#pre-development)
-- [Development](#development)
 - [Features](#features)
   - [Update Profit and Loss Account](#update-profit-and-loss-account)
   - [Update Balance Sheet](#update-balance-sheet)
@@ -28,6 +27,10 @@ This tool updates and analyses the financial performance of a small company. It 
     - [Resources](#resources)
   - [Libraries](#libraries)
 - [Testing](#testing)
+  - [Features Testing](#features-testing)
+  - [Input Validation Testing](#input-validation-testing)
+  - [Other Testing](#other-testing)
+  - [Testing Browsers](#testing-browsers)
 - [Future Updates](#future-updates)
 - [Validation](#validation)
 - [Deployment](#deployment)
@@ -35,7 +38,9 @@ This tool updates and analyses the financial performance of a small company. It 
 - [Solved Bugs](#solved-bugs)
 - [Credits](#credits)
 
+
 ## Project Description
+
 
 This tool updates and analyses the financial performance of a small company. It manages financial data, calculates various financial ratios, and carries out benchmark and trend analyses. The data is stored in Google Sheets and Python is used to update and analyse it.
 
@@ -46,32 +51,43 @@ The main goals of this project are to:
 - Provide a comprehensive financial report.
 - Compare financial performance against industry benchmarks and historical data.
 
+
 ### User goals:
+
 
 - Update financial statements quickly and accurately.
 - Automatically calculate and analyse financial ratios.
 - Compare current financial performance with historical data and industry benchmarks.
 
+
 ### Site owner goals
+
 
 - Provide an easy-to-use tool for financial analysis.
 - Ensure data accuracy and reliability.
 
+
 ## Features
+
 
 ### Update Profit and Loss Account
 
+
 The user is prompted to update the following accounts: sales revenue, inventory, rent, and interest expenses. A specific number range is provided for users. 
+
 
 ### Update Balance Sheet
 
-A user is prompted to update the following accounts: cash and cash equivalents and short-term loans. The specific number range is provided for users. 
 
+A user is prompted to update the following accounts: cash and cash equivalents and short-term loans. The specific number range is provided for users. 
 Once the data is entered, the profit and loss and balance sheet tabs are updated in Google Sheets.
+
 
 ### Generate Financial Statements
 
+
 A user is given a choice whether they want to generate updated financial statements or not. 
+
 
 ### Calculate Financial Ratios
 
@@ -82,12 +98,15 @@ The following ratios are calculated automatically:
  - Profitability ratios: net profit margin and return on assets
  - Solvency ratios: debt-to-equity ratio and interest cover
 
+
 ### Update Ratios in Google Sheets
+
 
 Once all ratios are calculated, the results are being updated in Google Sheets. Namely, the results are added to the fourth quarter the Ratios Historical Data tab. These Quarter 4 data is after used to carry out various types of analysis as part of the financial reporting.
 
 
 ### Options for users to select next step
+
 
 After updating the financial data, users can choose what they want to see next. The tool offers the following options:
 - financial ratios analysis
@@ -106,9 +125,12 @@ The tool provides a detailed analysis of financial ratios, including liquidity, 
 
 ### Benchmark Analysis
 
+
 The tool compares the calculated financial ratios with industry benchmarks. This comparison helps users understand how their company is performing relative to industry standards, identifying areas where the company excels or may need improvement.
 
+
 ### Trend Analysis
+
 
 The trend analysis feature evaluates financial ratios over four quarters to identify patterns and changes over time. This analysis helps users understand the direction of the company's financial performance, spotting trends that may indicate future challenges or opportunities.
 
@@ -118,18 +140,24 @@ The trend analysis feature evaluates financial ratios over four quarters to iden
 
 The summary provides a short explanation of what is included in the financial report and why these features are important.
 
+
 #### Future Implementations
+
 
 1. Add a more detailed ratio analysis.
 2. Implement visualisation options for financial data.
 3. Enable exporting of the report to PDF and Excel formats.
 
+
 ## Technologies Used
+
 
 - Python
 - [Google Sheets API](https://developers.google.com/sheets/api) - To interact with Google Sheets.
 
+
 ### Resources
+
 
 - Codeanywhere
 - Gitpod
@@ -139,19 +167,24 @@ The summary provides a short explanation of what is included in the financial re
 
 ### Libraries
 
+
 - [colorama](https://pypi.org/project/colorama/) - To highlight important sections of the generated report
 - [gspread](https://github.com/burnash/gspread) - A Python library to interact with Google Sheets.
 - [time](https://docs.python.org/3/library/time.html) -To apply an incremental time effect to the output.
 - [Google OAuth2](https://google-auth.readthedocs.io/en/latest/) - For authentication.
 
+
 ## Testing
+
 
 Once the tool was operational, testing was carried out to identify and fix any errors.
 
 
 The following tests were run to ensure the tool is working correctly:
 
+
 ### Features Testing
+
 
 | **Feature**   | **Action**                    | **Expected Result**          | **Actual Result** |
 | ------------- | ----------------------------- | ---------------------------- | ----------------- |
@@ -185,8 +218,7 @@ The following tests were run to ensure the tool is working correctly:
 | Financial Statements input validation | User enters a number with leading zero/zeros | "Leading zeros are not allowed" message is displayed | Works as expected |
 | Financial Statements input validation | User types "exit" | "Exiting the program" message is displayed, the program stops working | Works as expected |
 | Options what to do next | If user types anything but the options presented, they will be prompted to select a valid option| "Invalid choice. Please select a valid option" message is displayed | Works as expected |
-
-
+| Options to generate financial statements | If user types anything but the options presented, they will be prompted to select a valid option | "Invalid choice. Please select 'y' for yes or 'n' for no." message is displayed | Works as expected |
 
 
 ### Other Testing
@@ -198,6 +230,19 @@ The following tests were run to ensure the tool is working correctly:
 | Calculate financial ratios | If the denominator of the ratio is zero value error is raised | "Name of the ratio - should not be zero" message is displayed| Works as expected |
 | Calculate financial ratios | Negative ratios are grouped and presented with a warning | "Warning: the following ratios are negative, immediate investigation is required" message is displayed followed by the list of ratios | Works as expected |
 | Trend Analysis | Significant positive/negative results are brought to the user's attention| "Significant positive/negative trends" warning message is displayed, followed by the list of these trends | Works as expected |
+
+
+### Testing Browsers
+
+The tool has been tested in the following browsers:
+
+- Chrome
+- Edge
+- Firefox
+
+
+It worked without issues in the above browsers.
+
 
 ## Validation
 
