@@ -32,7 +32,7 @@ This tool updates and analyses the financial performance of a small company. It 
 - [Validation](#validation)
 - [Deployment](#deployment)
     - [Heroku](#heroku)
-- [Bugs](#bugs)
+- [Bugs Solved](#bugs-solved)
 - [Credits](#credits)
 
 ## Project Description
@@ -169,3 +169,10 @@ The Application has been deployed from GitHub to Heroku by following these steps
 9. Choose the branch to build your app from.
 10. Optionally, enable "Automatic Deploys" to keep the app up to date.
 11. Wait for the app to build. Once ready, you will see the “App was successfully deployed” message and a 'View' button to access your deployed link.
+
+
+## Bugs Solved
+
+- Apply validation errors when inputting data, no bugs identified
+- Corrected calculation formulas for financial ratios.
+- Adjust the code formatting in order to deploy on Heroku
