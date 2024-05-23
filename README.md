@@ -24,7 +24,6 @@ This tool updates and analyses the financial performance of a small company. It 
   - [Trend Analysis](#trend-analysis)
   - [Summary](#summary)
   - [Future Implementations](#future-implementations)
-- [Accessibility](#accessibility)
 - [Technologies Used](#technologies-used)
 - [Resources](#resources)
   - [Libraries](#libraries)
@@ -124,3 +123,23 @@ The summary provides a short explanation of what is included in the financial re
 1. Add a more detailed ratio analysis.
 2. Implement visualisation options for financial data.
 3. Enable exporting of the report to PDF and Excel formats.
+
+## Technologies Used
+
+- Python
+- [Google Sheets API](https://developers.google.com/sheets/api) - To interact with Google Sheets.
+
+### Resources
+
+- Codeanywhere
+- Gitpod
+- GitHub
+- Heroku
+
+
+### Libraries
+
+- [colorama](https://pypi.org/project/colorama/) - To highlight important sections of the generated report
+- [gspread](https://github.com/burnash/gspread) - A Python library to interact with Google Sheets.
+- [time](https://docs.python.org/3/library/time.html) -To apply an incremental time effect to the output.
+- [Google OAuth2](https://google-auth.readthedocs.io/en/latest/) - For authentication.
