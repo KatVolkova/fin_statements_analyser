@@ -25,13 +25,13 @@ This tool updates and analyses the financial performance of a small company. It 
   - [Summary](#summary)
   - [Future Implementations](#future-implementations)
 - [Technologies Used](#technologies-used)
-- [Resources](#resources)
+    - [Resources](#resources)
   - [Libraries](#libraries)
 - [Testing](#testing)
 - [Future Updates](#future-updates)
 - [Validation](#validation)
 - [Deployment](#deployment)
-- [Heroku](#heroku)
+    - [Heroku](#heroku)
 - [Bugs](#bugs)
 - [Credits](#credits)
 
@@ -150,3 +150,22 @@ The summary provides a short explanation of what is included in the financial re
 PEP8 - Python style guide checker was used. All code was validated, and adjustments were made where necessary.
 
 ![PEP8](assets/pep8-python-linter.png)
+
+
+## Deployment
+
+### Heroku
+
+The Application has been deployed from GitHub to Heroku by following these steps:
+
+1. Create or log in to your account at heroku.com.
+2. Create a new app, add a unique app name (e.g., financial-statements-analyser) and choose your region.
+3. Click on create app.
+4. Go to "Settings".
+5. Under Config Vars, add the private API key information using key 'CRED' and the value from the .json file. Also, add a key 'PORT' and value '8000'.
+6. Add required buildpacks. For this project, set Python on top and Node.js on the bottom.
+7. Go to "Deploy" and select "GitHub" in "Deployment method".
+8. Enter your repository name, click 'Search' and then 'Connect'.
+9. Choose the branch to build your app from.
+10. Optionally, enable "Automatic Deploys" to keep the app up to date.
+11. Wait for the app to build. Once ready, you will see the “App was successfully deployed” message and a 'View' button to access your deployed link.
