@@ -798,9 +798,16 @@ def main():
     update_balance_sheet()
     print(f"\n{Fore.CYAN}The Balance sheet has been updated")
     # Generate Financial Statements
-    generate_statements = input(
-        "\nWould you like to generate the Profit and Loss account and "
-        "Balance Sheet? (y/n): \n").strip().lower()
+    while True:
+        generate_statements = input(
+            "\nWould you like to generate the Profit and Loss account and "
+            "Balance Sheet? (y/n): \n").strip().lower()
+        if generate_statements in ['y', 'n']:
+            break
+        else:
+            print(
+                f"{Fore.RED}Invalid choice. "
+                "Please select 'y' for yes or 'n' for no.")
     if generate_statements == 'y':
         print(f"\n{Fore.CYAN}Step 3. Generate Financial Statements")
         generate_profit_and_loss()
