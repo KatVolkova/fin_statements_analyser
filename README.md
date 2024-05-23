@@ -32,7 +32,7 @@ This tool updates and analyses the financial performance of a small company. It 
 - [Validation](#validation)
 - [Deployment](#deployment)
     - [Heroku](#heroku)
-- [Bugs Solved](#bugs-solved)
+- [Solved Bugs](#solved-bugs)
 - [Credits](#credits)
 
 ## Project Description
@@ -144,6 +144,41 @@ The summary provides a short explanation of what is included in the financial re
 - [time](https://docs.python.org/3/library/time.html) -To apply an incremental time effect to the output.
 - [Google OAuth2](https://google-auth.readthedocs.io/en/latest/) - For authentication.
 
+## Testing
+
+Once the tool was operational, testing was carried out to identify and fix any errors.
+
+
+The following tests were run to ensure the tool is working correctly:
+
+### Features Testing
+
+| **Feature**   | **Action**                    | **Expected Result**          | **Actual Result** |
+| ------------- | ----------------------------- | ---------------------------- | ----------------- |
+| Instructions | User is given detailed instructions | Instructions are presented on the screen | Works as expected |
+| Profit and Loss input | User is prompted to enter numbers for particular accounts within the defined range| Prompt is presented to the user, the users adds a number | Works as expected |
+| Balance Sheet input | User is prompted to enter numbers for particular accounts within the defined range| Prompt is presented to the user, the users adds a number | Works as expected |
+| Update Profit and Loss Account in Google Sheets | Results are automatically added to the profit_and_loss tab| Results are added to the Google Sheets | Works as expected |
+| Update Balance Sheet in Google Sheets | Results are automatically added to the balance_sheet tab| Results are added to the Google Sheets | Works as expected |
+| Option to generate Financial Statements | User chooses "y" to generate financial statements | Statements are displayed correctly | Works as expected |
+| Option to generate Financial Statements | User chooses "n" to generate financial statements | Statements are not displayed, program runs the next task | Works as expected |
+| Calculate Liquidity Ratios | Current and Quick ratios are calculated automatically | Ratios are calculated correctly| Works as expected |
+| Calculate Profitability Ratios | Net Profit Margin and Return on Assets ratios are calculated automatically | Ratios are calculated correctly| Works as expected |
+| Calculate Solvency Ratios | Debt-to-Equity and Interest Cover ratios are calculated automatically | Ratios are calculated correctly| Works as expected |
+| Update ratios in Google sheets| Results are automatically added to the ratios_historical_data tab | Results are added to the Google Sheets | Works as expected|
+| Options what to do next | User is given 5 options to select what to do next  | Choices are presented to the user | Works as expected |
+| Option I. Financial ratios analysis  | User chooses to run ratios analysis   | Financial ratios are analysed and displayed with commentary | Works as expected |
+| Option II. Benchmark comparison | User chooses to run benchmark analysis   | Benchmarks are extracted from  industry_benchmarks tab, compared to actual results and displayed along with the comments| Works as expected |
+| Option III. Trend analysis | User chooses to run trend analysis   | Historical data is extracted from  ratios_historical_data tab, results of four quartesquarters are compared to eahc other and displayed along with the comments| Works as expected |
+| Option IV. Complete financial report (all points from I to III) | User chooses to run all three options presented above | Financial ratios, benchmark, trend analysis are displayd followed by a short summary | Works as expected |
+| Option V. Exit | User chooses to exit the program  | Program stops showing a message "Exiting the program" | Works as expected |
+| Program runs until user chooses to exit | User decides when to finish the program | User is asked to make a choice until option V. is selected  | Works as expected |
+
+
+
+
+
+
 
 ## Validation
 
@@ -171,7 +206,7 @@ The Application has been deployed from GitHub to Heroku by following these steps
 11. Wait for the app to build. Once ready, you will see the “App was successfully deployed” message and a 'View' button to access your deployed link.
 
 
-## Bugs Solved
+## Solved Bugs
 
 - Apply validation errors when inputting data, no bugs identified
 - Corrected calculation formulas for financial ratios.
