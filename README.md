@@ -12,6 +12,7 @@ This tool updates and analyses the financial performance of a small company. It 
   - [Site owner goals](#site-owner-goals)
   - [Pre-development](#pre-development)
 - [Features](#features)
+  - [Instructions](#instructions)
   - [Update Profit and Loss Account](#update-profit-and-loss-account)
   - [Update Balance Sheet](#update-balance-sheet)
   - [Generate Financial Statements](#generate-financial-statements)
@@ -85,7 +86,16 @@ Notes and flow charts that were created to plan the project:
 ## Features
 
 
+### Instructions
+
+
+![Instructions](assets/instructions.png)
+
+
 ### Update Profit and Loss Account
+
+
+![Update Profit and Loss Account](assets/update-profit-and-loss-account.png)
 
 
 The user is prompted to update the following accounts: sales revenue, inventory, rent, and interest expenses. A specific number range is provided for users. 
@@ -94,17 +104,33 @@ The user is prompted to update the following accounts: sales revenue, inventory,
 ### Update Balance Sheet
 
 
+![Update Balance Sheet](assets/update-balance-sheet.png)
+
+
 A user is prompted to update the following accounts: cash and cash equivalents and short-term loans. The specific number range is provided for users. 
 Once the data is entered, the profit and loss and balance sheet tabs are updated in Google Sheets.
 
 
 ### Generate Financial Statements
 
+![Choice](assets/confirm-generate-statements.png)
+![Generate Profit and Loss](assets/generate-profit-and-loss-account.png)
+![Generate Balance Sheet](assets/generate-balance-sheet.png)
 
-A user is given a choice whether they want to generate updated financial statements or not. 
+
+
+A user is given a choice whether they want to generate updated financial statements or not. If a user selects "y", both statements are displayd, program executes the next block of code. If a user selects "n", both statements are omitted , program executes the next block of code. 
+
+Due to the fact that the data entered is random, the accounting equition (Assets = Liabilities + Equity) in Balance Sheet won't work. That is why an additional line, called discrepancy has been included at the bottom of the Balance Sheet.
+
+
+![Discrepancy](assets/discrepancy-balance-sheet.png)
 
 
 ### Calculate Financial Ratios
+
+
+![Calculate Financial Ratios](assets/calculate-fin-ratios.png)
 
 
 The following ratios are calculated automatically:
@@ -117,10 +143,16 @@ The following ratios are calculated automatically:
 ### Update Ratios in Google Sheets
 
 
+![Update Ratios in Google Sheets](assets/update-fin-ratios.png)
+
+
 Once all ratios are calculated, the results are being updated in Google Sheets. Namely, the results are added to the fourth quarter the Ratios Historical Data tab. These Quarter 4 data is after used to carry out various types of analysis as part of the financial reporting.
 
 
 ### Options for users to select next step
+
+
+![Options for users to select next step](assets/next-step-options.png)
 
 
 After updating the financial data, users can choose what they want to see next. The tool offers the following options:
@@ -135,10 +167,16 @@ This flexibility allows users to tailor the analysis to their specific needs and
 ### Analyse and Compare Ratios
 
 
+![Analyse and Compare Ratios](assets/fin-ratios-analysis.png)
+
+
 The tool provides a detailed analysis of financial ratios, including liquidity, profitability, and solvency ratios. This analysis helps users understand the financial health of the company, highlighting areas of strength and potential concern
 
 
 ### Benchmark Analysis
+
+
+![Benchmark Analysis](assets/benchmarking.png)
 
 
 The tool compares the calculated financial ratios with industry benchmarks. This comparison helps users understand how their company is performing relative to industry standards, identifying areas where the company excels or may need improvement.
@@ -147,13 +185,24 @@ The tool compares the calculated financial ratios with industry benchmarks. This
 ### Trend Analysis
 
 
+![Trend Analysis](assets/trend-analysis.png)
+
+
 The trend analysis feature evaluates financial ratios over four quarters to identify patterns and changes over time. This analysis helps users understand the direction of the company's financial performance, spotting trends that may indicate future challenges or opportunities.
 
 
 ### Summary
 
 
+![Summary](assets/summary.png)
+
+
 The summary provides a short explanation of what is included in the financial report and why these features are important.
+
+When a user chooses option V, the program ends.
+
+
+![End program](assets/end-program.png)
 
 
 ## Google Sheets
