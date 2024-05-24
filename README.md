@@ -151,6 +151,57 @@ The trend analysis feature evaluates financial ratios over four quarters to iden
 The summary provides a short explanation of what is included in the financial report and why these features are important.
 
 
+## Google Sheets
+
+### Profit and Loss worksheet
+
+![Profit and Loss worksheet](assets/profit-and-loss%20-%20google-sheets.png)
+
+
+This worksheet contains a complete Profit and Loss account statement
+The cells highlighted contain formulas for calculated the total results for each section and subsection. The following accounts are updated by the user's input:
+
+- Sales revenue
+- Purchased inventory
+- Rent
+- Interest expenses
+
+
+### Balance Sheet worksheet
+
+
+![Financial Statements Analysis Tool](assets/balance-sheet-google-sheets.png)
+
+
+This worksheet contains a complete Balance Sheet statement
+The cells highlighted contain formulas for calculated the total results for each section and subsection. The following accounts are updated by the user's input:
+
+- Cash and cash equivalents
+- Short-term loans
+
+The data from both statements is then used to:
+
+- calculate financial ratios and provide details analysis of the results
+- conduct benchmark comparison
+- run trend analysis
+
+### Industry benchmarks worksheet
+
+![Financial Statements Analysis Tool](assets/industry-benchmarks-google-sheets.png)
+
+
+This worksheet contains retail industry benchmarks for each ratio. This data is extracted and compared to the actual results
+
+
+### Ratios historical data worksheet
+
+
+![Financial Statements Analysis Tool](assets/ratios-historical-data-google-sheets.png)
+
+
+This worksheet contains historical data for each quarter of the year. Quarter four is updated with the calculated results. The data for each quarter is extracted and compared to identify the trends and patterns. 
+
+
 #### Future Implementations
 
 
