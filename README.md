@@ -37,6 +37,8 @@ This tool updates and analyses the financial performance of a small company. It 
     - [Heroku](#heroku)
 - [Solved Bugs](#solved-bugs)
 - [Credits](#credits)
+  - [Terminology](#terminology)
+  - [Python and Google Sheets](#python-and-google-sheets)
 
 
 ## Project Description
@@ -283,3 +285,25 @@ The Application has been deployed from GitHub to Heroku by following these steps
 - Apply validation errors when inputting data, no bugs identified
 - Corrected calculation formulas for financial ratios.
 - Adjust the code formatting in order to deploy on Heroku
+
+## Credits
+
+
+### Terminology
+
+
+- Liquidity ratios: current and quick ratios [Investopedia](https://www.investopedia.com/terms/l/liquidityratios.asp/)
+- Profitability ratios: net profit margin, return on assets [Investopedia](https://www.investopedia.com/terms/p/profitabilityratios.asp/)
+- Solvency ratios: debt to equity, interest cover [Investopedia](https://www.investopedia.com/terms/s/solvencyratio.asp/)
+- Benchmarking [Wikipedia](https://en.wikipedia.org/wiki/Benchmarking/)
+- Trend analysis [Ideascale](https://ideascale.com/blog/what-is-trend-analysis//)
+
+
+### Python and Google Sheets
+
+- Using the Python zip() Function for Parallel Iteration [Real Python](https://realpython.com/python-zip-function//)
+- Google Sheets - Python API, Read & Write Data [YouTube](https://youtu.be/4ssigWmExak?si=_fMLU1vWwk9CTiYG/)
+
+
+
+
