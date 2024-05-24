@@ -211,6 +211,7 @@ This worksheet contains historical data for each quarter of the year. Quarter fo
 
 
 1. Add a more detailed ratio analysis.
+2. Provide a comprehensive report summary that reflects the final results.
 2. Implement visualisation options for financial data.
 3. Enable exporting of the report to PDF and Excel formats.
 
