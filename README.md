@@ -36,6 +36,7 @@ This tool updates and analyses the financial performance of a small company. It 
   - [Features Testing](#features-testing)
   - [Input Validation Testing](#input-validation-testing)
   - [Other Testing](#other-testing)
+  - [Google Sheets Testing](#google-sheets-testing)
   - [Testing Browsers](#testing-browsers)
 - [Future Updates](#future-updates)
 - [Validation](#validation)
@@ -354,6 +355,16 @@ The following tests were run to ensure the tool is working correctly:
 | Trend Analysis | Significant positive/negative results are brought to the user's attention| "Significant positive/negative trends" warning message is displayed, followed by the list of these trends | Works as expected |
 
 
+### Google Sheets Testing
+
+
+| **Feature**   | **Action**                    | **Expected Result**          | **Actual Result** |
+| ------------- | ----------------------------- | ---------------------------- | ----------------- |
+| Update Profit and Loss numbers | User enters a number for specific profit and loss account | Numbers inputted by users are added to profit and loss worksheet | Works as expected |
+| Update Balance Sheet numbers |  User enters a number for specific balance sheet account | Numbers inputted by users are added to balance sheet worksheet| Works as expected |
+| Update ratios calculations results | Various ratios are calculated based on updated data | The results are added to ratios historical data worksheet | Works as expected |
+
+
 ### Testing Browsers
 
 The tool has been tested in the following browsers:
@@ -394,9 +405,11 @@ The Application has been deployed from GitHub to Heroku by following these steps
 
 ## Solved Bugs
 
+
 - Apply validation errors when inputting data, no bugs identified
 - Corrected calculation formulas for financial ratios.
 - Adjust the code formatting in order to deploy on Heroku
+
 
 ## Credits
 
