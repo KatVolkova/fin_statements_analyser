@@ -301,7 +301,7 @@ The Application has been deployed from GitHub to Heroku by following these steps
 
 ### Python and Google Sheets
 
-- Using the Python zip() Function for Parallel Iteration [Real Python](https://realpython.com/python-zip-function//)
+- Using the Python zip() Function for Parallel Iteration [Real Python](https://realpython.com/python-zip-function/)
 - Google Sheets - Python API, Read & Write Data [YouTube](https://youtu.be/4ssigWmExak?si=_fMLU1vWwk9CTiYG/)
 
 
