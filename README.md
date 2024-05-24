@@ -1,6 +1,7 @@
 # Financial Statements Analysis Tool
 
 ![Financial Statements Analysis Tool](assets/financial-statements-analyser.png)
+![Financial Statements Analysis Tool Different Monitors](assets/financial-statements-analyser-tool-different-monitors.png)
 
 Visit the deployed site: [Financial Statements Analysis Tool](https://fin-statements-analysis-tool-13d33c22c8d1.herokuapp.com/)
 
