@@ -92,13 +92,16 @@ Notes and flow charts that were created to plan the project:
 ![Instructions](assets/instructions.png)
 
 
+A set of instructions is provided to users to explain all steps that should be followed and input requirements.
+
+
 ### Update Profit and Loss Account
 
 
 ![Update Profit and Loss Account](assets/update-profit-and-loss-account.png)
 
 
-The user is prompted to update the following accounts: sales revenue, inventory, rent, and interest expenses. A specific number range is provided for users. 
+The user is prompted to update the following accounts: sales revenue, inventory, rent, and interest expenses. A specific number range is provided for users. When the data is entered the Google sheet is updated and the following message is displayed: "Profit and loss account has been updated successfully"
 
 
 ### Update Balance Sheet
@@ -107,8 +110,7 @@ The user is prompted to update the following accounts: sales revenue, inventory,
 ![Update Balance Sheet](assets/update-balance-sheet.png)
 
 
-A user is prompted to update the following accounts: cash and cash equivalents and short-term loans. The specific number range is provided for users. 
-Once the data is entered, the profit and loss and balance sheet tabs are updated in Google Sheets.
+A user is prompted to update the following accounts: cash and cash equivalents and short-term loans. The specific number range is provided for users. When the data is entered the Google sheet is updated and the following message is displayed: "Profit and loss account has been updated successfully"
 
 
 ### Generate Financial Statements
@@ -140,6 +142,9 @@ The following ratios are calculated automatically:
  - Solvency ratios: debt-to-equity ratio and interest cover
 
 
+Short explanations are given for each ratio to ensure better understanding of the results.
+
+
 ### Update Ratios in Google Sheets
 
 
@@ -160,6 +165,7 @@ After updating the financial data, users can choose what they want to see next. 
 - benchmark comparison -
 - trend analysis
 - run a complete financial report that combines all options above. 
+- exit the program
 
 This flexibility allows users to tailor the analysis to their specific needs and interests.
 
@@ -170,7 +176,7 @@ This flexibility allows users to tailor the analysis to their specific needs and
 ![Analyse and Compare Ratios](assets/fin-ratios-analysis.png)
 
 
-The tool provides a detailed analysis of financial ratios, including liquidity, profitability, and solvency ratios. This analysis helps users understand the financial health of the company, highlighting areas of strength and potential concern
+The tool provides a detailed analysis of financial ratios, including liquidity, profitability, and solvency ratios. This analysis helps users understand the financial health of the company, highlighting areas of strength and potential concern. Negative ratios are highlighted and grouped under the warning "Immediate investigation is required".
 
 
 ### Benchmark Analysis
@@ -179,7 +185,7 @@ The tool provides a detailed analysis of financial ratios, including liquidity, 
 ![Benchmark Analysis](assets/benchmarking.png)
 
 
-The tool compares the calculated financial ratios with industry benchmarks. This comparison helps users understand how their company is performing relative to industry standards, identifying areas where the company excels or may need improvement.
+The tool compares the calculated financial ratios with industry benchmarks. This comparison helps users understand how their company is performing relative to industry standards, identifying areas where the company excels or may need improvement. A short explanation of benchmarking is provided for non-financial users. 
 
 
 ### Trend Analysis
@@ -188,7 +194,7 @@ The tool compares the calculated financial ratios with industry benchmarks. This
 ![Trend Analysis](assets/trend-analysis.png)
 
 
-The trend analysis feature evaluates financial ratios over four quarters to identify patterns and changes over time. This analysis helps users understand the direction of the company's financial performance, spotting trends that may indicate future challenges or opportunities.
+The trend analysis feature evaluates financial ratios over four quarters to identify patterns and changes over time. This analysis helps users understand the direction of the company's financial performance, spotting trends that may indicate future challenges or opportunities. A short explanation of the trend analysis is provided for non-financial users. 
 
 
 ### Summary
