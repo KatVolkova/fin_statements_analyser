@@ -22,7 +22,12 @@ This tool updates and analyses the financial performance of a small company. It 
   - [Benchmark Analysis](#benchmark-analysis)
   - [Trend Analysis](#trend-analysis)
   - [Summary](#summary)
-  - [Future Implementations](#future-implementations)
+- [Google Sheets](#google-sheets)
+ - [Profit and Loss worksheet](#profit-and-loss-worksheet)
+ - [Balance Sheet worksheet](#balance-sheet-worksheet)
+ - [Industry benchmarks worksheet](#industry-benchmarks-worksheet)
+ - [Ratios historical data worksheet](#ratios-historical-data-worksheet)
+- [Future Implementations](#future-implementations)
 - [Technologies Used](#technologies-used)
     - [Resources](#resources)
   - [Libraries](#libraries)
@@ -181,7 +186,7 @@ The cells highlighted contain formulas for calculated the total results for each
 
 The data from both statements is then used to:
 
-- calculate financial ratios and provide details analysis of the results
+- calculate financial ratios and provide detailed analysis of the results
 - conduct benchmark comparison
 - run trend analysis
 
@@ -202,7 +207,7 @@ This worksheet contains retail industry benchmarks for each ratio. This data is 
 This worksheet contains historical data for each quarter of the year. Quarter four is updated with the calculated results. The data for each quarter is extracted and compared to identify the trends and patterns. 
 
 
-#### Future Implementations
+## Future Implementations
 
 
 1. Add a more detailed ratio analysis.
